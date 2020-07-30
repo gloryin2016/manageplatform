@@ -54,6 +54,12 @@ const routes = [
             component: resolve =>
               require(['@page/teacher/teacher.vue'], resolve)
           },
+          {
+            path: '/home/teacher/playVideo',
+            name: 'playVideo',
+            component: resolve =>
+              require(['@page/teacher/playVideo.vue'], resolve)
+          },
         ]
       },
       {

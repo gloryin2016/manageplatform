@@ -54,6 +54,7 @@
 </template>
 <script>
 // import schoolApi from '@/lib/api/school'
+import utilsTool from "@/lib/utils/index";
 export default {
   name: "",
   data() {
@@ -62,7 +63,7 @@ export default {
         url: "",
         play: false,
       },
-      cutTime: [2, 10, 30],
+      cutTime: ['2', '10', '20'],
       base64Arr: [],
       showCoverArr: [],
     };
@@ -74,7 +75,7 @@ export default {
   methods: {
     UploadVideo(file) {
       this.base64Arr = [];
-      this.showCoverArr = []
+      this.showCoverArr = [];
       console.log(file);
       if (!/^video\/mp4$/.test(file.type)) {
         this.$Message.warning("视频格式不正确，只支持“.mp4”");
@@ -87,71 +88,31 @@ export default {
       let url = URL.createObjectURL(file);
       this.videoInfo.src = url;
       console.log(url);
-      this.cutTime.forEach((item, index) => {
-        this.GetCoverPic(url, item, index);
-      });
+      this.cutVideoCover(url, 0);
     },
     // eslint-disable-next-line no-unused-vars
-    GetCoverPic(url, time, index) {
-      let that = this;
-      var video = document.createElement("video");
-      video.src = url;
-      video.style.cssText =
-        "position:fixed; top:0; left:-100%; visibility:hidden";
-      video.onloadeddata = function() {
-        video.currentTime = time;
-        video.addEventListener("timeupdate", function() {
-          that.clipAndCompressCover({
-            media: video,
-            currentWidth: video.videoWidth,
-            currentHeight: video.videoHeight,
-            success: function(base64) {
-              video.remove(video);
-              that.base64Arr.push(base64);
-              if (that.base64Arr.length == that.cutTime.length) {
-                that.$Message.success("完成");
-                that.showCoverArr = that.base64Arr;
-              }
-            },
-          });
-        });
-        // video.currentTime = currentTime < 0 ? 1 : currentTime;
-      };
-      console.log(this.base64Arr);
-    },
-    clipAndCompressCover({ media, currentWidth, currentHeight, success }) {
-      const canvas = document.createElement("canvas");
-      const area = canvas.getContext("2d");
-      const currentScale = currentWidth / currentHeight;
-      const targetScale = 750 / 420;
-      let targetWidth = 0;
-      let targetHeight = 0;
-      let clipWidth = 0;
-      let clipHeight = 0;
-      let quality = 0.95; // 不要用1，会额外增大base64大小。
-
-      // 根据视频宽高，决定截图大小
-      if (currentScale >= targetScale) {
-        targetHeight = currentHeight > 420 ? 420 : currentHeight;
-        targetWidth = targetHeight * currentScale;
-      } else {
-        targetWidth = currentWidth > 750 ? 750 : currentWidth;
-        targetHeight = targetWidth / currentScale;
-      }
-      clipWidth = targetWidth > 750 ? 750 : targetWidth;
-      clipHeight = targetHeight > 420 ? 420 : currentHeight;
-      canvas.width = clipWidth;
-      canvas.height = clipHeight;
-
-      area.drawImage(
-        media,
-        0,
-        0,
-        targetWidth,
-        targetHeight
-      );
-      const base64 = canvas.toDataURL("image/jpeg", quality);
-      success(base64);
+    // 视频封面截图（传入截屏时间点）
+    cutVideoCover(url, index) {
+      utilsTool.GetVideoCover({
+        url: url,
+        time: this.cutTime[index],
+        success: (res) => {
+          this.showCoverArr.push(res.base64); //给展示列表传入截图的URL
+          console.log(
+            "第",
+            index+1,
+            "张",
+            "总",
+            this.cutTime.length,
+            "张"
+          );
+          if(parseInt(index)<parseInt(this.cutTime.length)){
+            this.cutVideoCover(url, index+=1);
+          }else {
+            console.log(this.showCoverArr)
+          }
+        },
+      });
     },
   },
 };

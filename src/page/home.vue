@@ -208,6 +208,13 @@ export default {
               id: '0',
               path: '/home/teacher/teacher',
             },
+            {
+              name: 'playData',
+              title: '视频播放',
+              icon: '',
+              id: '1',
+              path: '/home/teacher/playVideo',
+            },
           ],
         },
         {

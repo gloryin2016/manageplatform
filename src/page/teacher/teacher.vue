@@ -14,13 +14,13 @@
       <el-amap vid="amap" :plugin="plugin" class="amap-demo" :center="center">
       </el-amap>
     </div> -->
-    <div class="toolbar">
+    <!-- <div class="toolbar">
       <span v-if="loaded"> location: lng = {{ lng }} lat = {{ lat }} </span>
       <span v-else>正在定位</span>
     </div>
     <Button v-on:click="req_post()">
       查询周边
-    </Button>
+    </Button> -->
   </div>
 </template>
 <script>

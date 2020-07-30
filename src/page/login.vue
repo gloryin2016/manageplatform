@@ -11,6 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     z-index: -10;
     img {
       width: 100%;
@@ -36,32 +37,44 @@
       margin-bottom: 40px;
     }
     .inputOut {
+      background-image: linear-gradient(to right, #e8198b, #3b65bb);
+      height: 45px;
       width: 100%;
-      height: 49px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 20px;
+      border-radius: 25px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      box-sizing: border-box;
-      padding: 0px 20px 0px 10px;
-      background-color: rgba(0, 0, 0, 0.3);
-      margin-bottom: 22px;
-      border-radius: 6px;
-      .figure {
-        width: 20px;
-        height: 20px;
-      }
+      transition: 0.3s;
       .input {
-        width: 380px;
-        color: #111;
-        height: 47px;
-        box-sizing: border-box;
-        padding: 12px 5px 12px 15px;
+        background-color: rgb(41, 45, 62);
+        border: 0px;
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        color: aliceblue;
+        outline: none;
+        height: calc(100% - 4px);
+        width: calc(100% - 4px);
+        border-radius: 25px;
+        font-size: 20px;
       }
     }
     .loginButton {
-      width: 100%;
-      height: 48px;
+      width: 60%;
+      border: 2px solid #3b65bb;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 40px;
+      text-transform: uppercase;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #fff;
+      font-size: 20px;
+    }
+    .loginButton:hover {
+      background-color: #3B65BB;
     }
     .call {
       margin-top: 10px;
@@ -87,9 +100,8 @@
       >
     </div>
     <div class="logCenter">
-      <div class="title">{{date}}</div>
+      <div class="title">{{ date }}</div>
       <div class="inputOut">
-        <img :src="userImg" class="figure" />
         <input
           type="text"
           placeholder="请输入用户名"
@@ -98,7 +110,6 @@
         />
       </div>
       <div class="inputOut">
-        <img :src="passwdImg" class="figure" />
         <input
           type="password"
           placeholder="请输入密码"
@@ -106,38 +117,36 @@
           v-model="password"
         />
       </div>
-      <Button type="primary" class="loginButton" @click="LoginMyPage"
-        >登录</Button
-      >
+      <div class="loginButton" @click="LoginMyPage">登录</div>
     </div>
   </div>
 </template>
 
 <script>
-import userImg from '@assets/figure.png'
+import userImg from "@assets/figure.png";
 // import store from '@src/store'
-import passwdImg from '@assets/password.png'
-import backgroundImg1 from '@assets/bg_01.png'
-import backgroundImg2 from '@assets/bg_02.png'
+import passwdImg from "@assets/password.png";
+import backgroundImg1 from "@assets/bg_01.png";
+import backgroundImg2 from "@assets/bg_02.png";
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       userImg: userImg,
       passwdImg: passwdImg,
       bg1: backgroundImg1,
       bg2: backgroundImg2,
       myBackground: false,
       date: new Date(),
-    }
+    };
   },
   created() {
     this.$Message.config({
       top: 50,
       duration: 3,
-    })
+    });
   },
   mounted() {
     let _this = this;
@@ -153,29 +162,29 @@ export default {
   methods: {
     //有真实接口请求的时候使用该登录方法
     Login() {
-      if (this.username == '' || this.password == '') {
-        this.$Message.warning('账号密码不能为空')
+      if (this.username == "" || this.password == "") {
+        this.$Message.warning("账号密码不能为空");
       } else {
         this.$store
-          .dispatch('login', {
+          .dispatch("login", {
             username: this.username,
             password: this.password,
           })
           .then((result) => {
             if (result.success == true) {
               //请求成功则进入主页
-              this.$router.push({ name: 'home' })
+              this.$router.push({ name: "home" });
             } else {
               //抛出异常信息
-              this.$Message.error(result.message)
+              this.$Message.error(result.message);
             }
-          })
+          });
       }
     },
     //模板不做真实接口请求，点击登录直接进入页面
     LoginMyPage() {
-      this.$router.push({ name: 'home' }) //vue路由跳转的方法之一
+      this.$router.push({ name: "home" }); //vue路由跳转的方法之一
     },
   },
-}
+};
 </script>
