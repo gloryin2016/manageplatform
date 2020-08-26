@@ -76,6 +76,20 @@ const routes = [
           },
         ]
       },
+      {
+        path: '/home/animation',
+        name: 'animation',
+        redirect: '/home/animation/sakura',
+        component: resolve => require(['@page/analysis/index.vue'], resolve),
+        children: [
+          {
+            path: '/home/animation/sakura',
+            name: 'sakura',
+            component: resolve =>
+              require(['@page/animation/sakura.vue'], resolve)
+          },
+        ]
+      },
     ]
   },
 ]

@@ -232,6 +232,21 @@ export default {
             },
           ],
         },
+        {
+          name: 'dataAnimation',
+          title: '动画案例',
+          icon: 'md-school',
+          id: '0',
+          submenu: [
+            {
+              name: 'schoolData',
+              title: '樱花',
+              icon: '',
+              id: '0',
+              path: '/home/animation/sakura',
+            },
+          ],
+        },
       ],
       selectedMenu: 'schoolData',
       openMenu: ['dataAnalysis'],

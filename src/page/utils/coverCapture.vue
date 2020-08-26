@@ -63,8 +63,7 @@ export default {
         url: "",
         play: false,
       },
-      cutTime: ['2', '10', '20'],
-      base64Arr: [],
+      cutTime: ['3', '20', '66'],
       showCoverArr: [],
     };
   },
@@ -74,7 +73,6 @@ export default {
 
   methods: {
     UploadVideo(file) {
-      this.base64Arr = [];
       this.showCoverArr = [];
       console.log(file);
       if (!/^video\/mp4$/.test(file.type)) {
@@ -99,12 +97,8 @@ export default {
         success: (res) => {
           this.showCoverArr.push(res.base64); //给展示列表传入截图的URL
           console.log(
-            "第",
-            index+1,
-            "张",
-            "总",
-            this.cutTime.length,
-            "张"
+            "第",index+1,"张",
+            "总",this.cutTime.length,"张"
           );
           if(parseInt(index)<parseInt(this.cutTime.length)){
             this.cutVideoCover(url, index+=1);
