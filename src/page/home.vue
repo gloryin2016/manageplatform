@@ -139,9 +139,12 @@
             :to="{
               path: sub_menu.path,
               name: sub_menu.rName,
+              query: {
+                menuName: sub_menu.pathQuery,
+              },
               params: {
                 menuId: sub_menu.id,
-                menuName: sub_menu.title,
+                menuName: sub_menu.pathQuery,
               },
             }"
             ><Icon :type="sub_menu.icon"></Icon>{{ sub_menu.title }}</menu-item
@@ -155,131 +158,144 @@
   </div>
 </template>
 <script>
-import logo from '@assets/avatar_01.jpg'
-import userImg from '@assets/figure.png'
+import logo from "@assets/avatar_01.jpg";
+import userImg from "@assets/figure.png";
 export default {
   data() {
     return {
       logo,
-      name: '测试名字',
+      name: "测试名字",
       // userImg: '../assets/figure.png',
       userImg,
       menus: [
         {
-          name: 'dataAnalysis',
-          title: '数据统计',
-          icon: 'md-school',
-          id: '0',
+          name: "dataAnalysis",
+          title: "数据统计",
+          icon: "md-school",
+          id: "0",
           submenu: [
             {
-              name: 'schoolData',
-              title: '学校数据',
-              icon: '',
-              id: '0',
-              path: '/home/analysis/school',
+              name: "school",
+              title: "学校数据",
+              icon: "",
+              id: "0",
+              path: "/home/analysis/school",
             },
           ],
         },
         {
-          name: 'dataStudent',
-          title: '学生管理',
-          icon: 'ios-people',
-          id: '0',
+          name: "dataStudent",
+          title: "学生管理",
+          icon: "ios-people",
+          id: "0",
           submenu: [
             {
-              name: 'studentData',
-              title: '学生信息',
-              icon: '',
-              id: '0',
-              path: '/home/student/student',
+              name: "student",
+              title: "学生信息",
+              icon: "",
+              id: "0",
+              path: "/home/student/student",
             },
           ],
         },
         {
-          name: 'dataTeacher',
-          title: '教师管理',
-          icon: 'ios-contacts',
-          id: '0',
+          name: "dataTeacher",
+          title: "教师管理",
+          icon: "ios-contacts",
+          id: "0",
           submenu: [
             {
-              name: 'teacherData',
-              title: '教师信息',
-              icon: '',
-              id: '0',
-              path: '/home/teacher/teacher',
+              name: "teacher",
+              title: "教师信息",
+              icon: "",
+              id: "0",
+              path: "/home/teacher/teacher",
             },
             {
-              name: 'playData',
-              title: '视频播放',
-              icon: '',
-              id: '1',
-              path: '/home/teacher/playVideo',
+              name: "playData",
+              title: "视频播放",
+              icon: "",
+              id: "1",
+              path: "/home/teacher/playVideo",
+            },
+            {
+              name: "videoPlay",
+              title: "视频组件",
+              icon: "",
+              id: "2",
+              path: "/home/teacher/videoPlay",
+            }
+          ],
+        },
+        {
+          name: "practicalFunctions",
+          title: "常用工具",
+          icon: "md-planet",
+          id: "0",
+          submenu: [
+            {
+              name: "coverCapture",
+              title: "视频封面截取",
+              icon: "",
+              id: "0",
+              path: "/home/practicalFunctions/coverCapture",
             },
           ],
         },
         {
-          name: 'practicalFunctions',
-          title: '常用工具',
-          icon: 'md-planet',
-          id: '0',
+          name: "dataAnimation",
+          title: "动画案例",
+          icon: "md-school",
+          id: "0",
           submenu: [
             {
-              name: 'coverCapture',
-              title: '视频封面截取',
-              icon: '',
-              id: '0',
-              path: '/home/practicalFunctions/coverCapture',
-            },
-          ],
-        },
-        {
-          name: 'dataAnimation',
-          title: '动画案例',
-          icon: 'md-school',
-          id: '0',
-          submenu: [
-            {
-              name: 'schoolData',
-              title: '樱花',
-              icon: '',
-              id: '0',
-              path: '/home/animation/sakura',
+              name: "sakura",
+              title: "樱花",
+              icon: "",
+              id: "0",
+              path: "/home/animation/sakura",
+              pathQuery: "sakura",
             },
           ],
         },
       ],
-      selectedMenu: 'schoolData',
-      openMenu: ['dataAnalysis'],
+      selectedMenu: "",
+      openMenu: ["dataAnalysis"],
       userMenus: [
         {
-          name: 'changeMain',
-          title: '切换主题',
-          pathName: 'changeMain',
+          name: "changeMain",
+          title: "切换主题",
+          pathName: "changeMain",
         },
         {
-          name: 'changePsword',
-          title: '修改密码',
-          pathName: 'changePsword',
+          name: "changePsword",
+          title: "修改密码",
+          pathName: "changePsword",
         },
         {
-          name: 'logout',
-          title: '退出',
-          pathName: 'logout',
+          name: "logout",
+          title: "退出",
+          pathName: "logout",
           hasDivided: true,
         },
       ],
-    }
+    };
   },
   created() {},
+  mounted() {
+    this.selectedMenu = this.$route.path;
+    console.log(this.selectedMenu);
+  },
   methods: {
     UpdateOpened(name) {
-      this.openMenu = name
+      console.log(name)
+      this.openMenu = name;
     },
     UpdateActiveName(name) {
       this.$nextTick(() => {
-        this.selectedMenu = name
-      })
+        this.selectedMenu = name;
+      });
     },
   },
-}
+};
 </script>

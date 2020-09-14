@@ -20,6 +20,14 @@
         position: relative;
         width: 520px;
       }
+      .player-bar {
+        width: 100%;
+        height: 72px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #5ec2a6;
+      }
       .srt-info {
         width: 100%;
         position: absolute;
@@ -104,15 +112,16 @@
   <div class="student-data">
     <div class="video-content">
       <div class="video-part">
-        <video id="video" :src="videoSrc1" controls></video>
-        <div class="srt-info" v-for="(item, index) in srtInfoList" :key="index">
+        <video id="video" :src="videoSrc1"></video>
+        <!-- <div class="srt-info" v-for="(item, index) in srtInfoList" :key="index">
           <div
             class="text"
             v-if="srtTime > item.startTime && srtTime < item.endTime"
           >
             {{ item.text }}
           </div>
-        </div>
+        </div> -->
+        <div class="player-bar"></div>
       </div>
     </div>
     <div class="chart-m-l-c">

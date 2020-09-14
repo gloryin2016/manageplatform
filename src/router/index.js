@@ -50,7 +50,7 @@ const routes = [
         children: [
           {
             path: '/home/teacher/teacher',
-            name: 'school',
+            name: 'teacher',
             component: resolve =>
               require(['@page/teacher/teacher.vue'], resolve)
           },
@@ -59,6 +59,12 @@ const routes = [
             name: 'playVideo',
             component: resolve =>
               require(['@page/teacher/playVideo.vue'], resolve)
+          },
+          {
+            path: '/home/teacher/videoPlay',
+            name: 'videoPlay',
+            component: resolve =>
+              require(['@page/teacher/videoPlay.vue'], resolve)
           },
         ]
       },
