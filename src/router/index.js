@@ -66,6 +66,12 @@ const routes = [
             component: resolve =>
               require(['@page/teacher/videoPlay.vue'], resolve)
           },
+          {
+            path: '/home/teacher/audioPlay',
+            name: 'audioPlay',
+            component: resolve =>
+              require(['@page/teacher/audioPlay.vue'], resolve)
+          },
         ]
       },
       {

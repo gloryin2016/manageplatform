@@ -79,7 +79,6 @@
     box-sizing: border-box;
     padding-left: 260px;
     padding-top: 64px;
-    background: #f3f3f3;
     height: 100vh;
   }
 }
@@ -224,6 +223,13 @@ export default {
               icon: "",
               id: "2",
               path: "/home/teacher/videoPlay",
+            },
+            {
+              name: "audioPlay",
+              title: "音频播放器",
+              icon: "",
+              id: "3",
+              path: "/home/teacher/audioPlay",
             }
           ],
         },
