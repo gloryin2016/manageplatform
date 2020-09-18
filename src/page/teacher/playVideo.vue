@@ -112,16 +112,16 @@
   <div class="student-data">
     <div class="video-content">
       <div class="video-part">
-        <video id="video" :src="videoSrc1"></video>
-        <!-- <div class="srt-info" v-for="(item, index) in srtInfoList" :key="index">
+        <video id="video" :src="videoUrl" controls></video>
+        <div class="srt-info" v-for="(item, index) in srtInfoList" :key="index">
           <div
             class="text"
             v-if="srtTime > item.startTime && srtTime < item.endTime"
           >
             {{ item.text }}
           </div>
-        </div> -->
-        <div class="player-bar"></div>
+        </div>
+        <!-- <div class="player-bar"></div> -->
       </div>
     </div>
     <div class="chart-m-l-c">
@@ -139,18 +139,12 @@
 <script>
 // import schoolApi from '@/lib/api/school'
 import axios from "axios";
+import videoUrl from "@assets/20200916.mp4";
 export default {
   data() {
     return {
-      videoSrc:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-07-27/7f5fa6ef44fb26b57047e15a2ea0012a.mp4",
-      videoSrc1:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-07-18/9217d43fffdf3f608d29a0b17cf6fe95.mp4",
-      srt:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-07-27/1c42181ff8647c8d4d53c5a2bfbbf503.srt",
-      srt1:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-07-18/d520e9745e7042b2a6433a24a87c6536.srt",
       isplay: false,
+      videoUrl,
       srtInfoList: [],
       srtTime: "",
       prosecutorArr: ['0'],
@@ -160,7 +154,6 @@ export default {
     };
   },
   created() {
-    this.GetSrtInfo(this.srt1);
     let testArr = JSON.stringify(this.numbers)
     console.log(testArr)
     this.prosecutorArr = testArr.split("")

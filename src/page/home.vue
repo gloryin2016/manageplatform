@@ -158,7 +158,7 @@
   </div>
 </template>
 <script>
-import logo from "@assets/avatar_01.jpg";
+import logo from "@assets/avatar_02.jpg";
 import userImg from "@assets/figure.png";
 export default {
   data() {

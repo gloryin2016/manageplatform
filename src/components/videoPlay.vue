@@ -1,10 +1,14 @@
 /* eslint-disable no-undef */
 <style lang="less" scoped>
 .main-container {
+  width: 100%;
   position: relative;
   .video-player {
     width: 100%;
     display: flex;
+  }
+  .offestDiv {
+    width: 100%;
   }
   .fade-enter-active,
   .fade-leave-active {
@@ -120,7 +124,7 @@
     <video class="video-player" preload="preload" id="video" ref="v">
       <source :src="videoSrc" />
     </video>
-    <div ref="track" style="width: 100%"></div>
+    <div class="offestDiv" ref="track" style="width: 100%"></div>
     <transition name="fade">
       <div class="controller" v-show="isControlVisible">
         <div class="controller_btn-wrapper">
@@ -128,12 +132,12 @@
             <img
               v-show="isPaused"
               class="play-icon"
-              src="https://wapcdn.qupeiyin.cn/activity/mechanism/play_icon.png"
+              src="@assets/play_icon.png"
             />
             <img
               v-show="!isPaused"
               class="play-icon"
-              src="https://wapcdn.qupeiyin.cn/activity/mechanism/play-02.png"
+              src="@assets/play-02.png"
             />
           </div>
           <div class="controller_time">
@@ -169,14 +173,14 @@
   </div>
 </template>
 <script>
-//2020-07-07/c9c62e15012f7349e4f3ada49708144a.mp4
+import videoUrl from "@assets/20200916.mp4";
 export default {
   name: "MyVideo",
   props: {
     videoSrc: {
       type: String,
       default:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-09-04/0ea10b55e06c8d4ffa20ffa0acf3b649.mp4",
+        videoUrl,
     },
   },
   data() {
@@ -190,10 +194,6 @@ export default {
       thumbTranslateX: 0, // 进度条滑块位置
       hidingEvent: null,
       progress: null,
-      video_url1:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-09-04/a66e47cb434d2cb25236b9e51b99c05f.mp4",
-      video_url2:
-        "https://cdn.qupeiyin.cn/ugcdev/2020-09-04/0ea10b55e06c8d4ffa20ffa0acf3b649.mp4",
     };
   },
   created() {},
@@ -235,6 +235,7 @@ export default {
         // eslint-disable-next-line no-undef
         that.videoProgress = video.currentTime / video.duration;
         that.thumbTranslateX = (that.videoProgress * progressL).toFixed(3);
+        console.log(that.thumbTranslateX, progressL);
       });
       // eslint-disable-next-line no-undef
       video.addEventListener("ended", () => {

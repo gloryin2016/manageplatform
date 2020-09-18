@@ -10,22 +10,20 @@
 </style>
 <template>
   <div class="student-data">
-    <!-- <div :style="{ width: '100%', height: '500px' }">
-      <el-amap vid="amap" :plugin="plugin" class="amap-demo" :center="center">
-      </el-amap>
-    </div> -->
-    <!-- <div class="toolbar">
-      <span v-if="loaded"> location: lng = {{ lng }} lat = {{ lat }} </span>
-      <span v-else>正在定位</span>
+    <div id="container">
+      <div class="image">
+        <img
+          src="http://ww4.sinaimg.cn/mw600/005vbOHfgw1ercvg85sr0j30jg0t6tdq.jpg"
+          alt="Hello World"
+        />
+        <em></em>
+      </div>
     </div>
-    <Button v-on:click="req_post()">
-      查询周边
-    </Button> -->
   </div>
 </template>
 <script>
 // import schoolApi from '@/lib/api/school'
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     const self = this;
@@ -72,7 +70,8 @@ export default {
   methods: {
     req_post() {
       // const that = this;
-      const registerUrl = "http://restapi.amap.com/v3/batch?key=b210e9e51c4cf865d4c4f93d3054ea93";
+      const registerUrl =
+        "http://restapi.amap.com/v3/batch?key=b210e9e51c4cf865d4c4f93d3054ea93";
       const newUserInfo = {
         ops: [
           {

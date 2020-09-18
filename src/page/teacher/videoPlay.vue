@@ -13,18 +13,17 @@
 <template>
   <div class="main-page">
     <div class="video-play">
-      <mvideo :videoSrc.sync="url"></mvideo>
+      <mvideo :videoSrc.sync="videoUrl"></mvideo>
     </div>
-    <Button @click="ChangeUrl">切换</Button>
   </div>
 </template>
 <script>
 import Mvideo from "@/components/videoPlay";
+import videoUrl from "@assets/20200916.mp4";
 export default {
   data() {
     return {
-      url:
-        "https://cdn.qupeiyin.cn/2020-07-07/c9c62e15012f7349e4f3ada49708144a.mp4",
+      videoUrl,
     };
   },
   created() {},
@@ -34,11 +33,6 @@ export default {
   },
   mounted() {},
   methods: {
-    ChangeUrl() {
-      this.url =
-        "https://cdn.qupeiyin.cn/ugcdev/2020-09-04/a66e47cb434d2cb25236b9e51b99c05f.mp4";
-      console.log(this.url);
-    },
   },
 };
 </script>
