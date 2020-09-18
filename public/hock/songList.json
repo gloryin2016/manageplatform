@@ -1,0 +1,141 @@
+{
+    "status": true,
+    "data": {
+        "songList": [{
+                "albumId": 75612550,
+                "albumTitle": "辞.九门回忆",
+                "artistsName": "解忧草/冰幽",
+                "cover": "https://p1.music.126.net/pWJXXU4kbhsk1HhXCPUMag==/109951163879149420.jpg",
+                "id": 557640761,
+                "name": "辞.九门回忆",
+                "url": "https://music.163.com/song/media/outer/url?id=1347524822.mp3"
+            },
+            {
+                "albumId": 9333,
+                "albumTitle": "翻唱合集",
+                "artistsName": "等什么君",
+                "cover": "https://y.gtimg.cn/music/photo_new/T002R300x300M000000vtKmF3OEIbF.jpg?max_age=2592000",
+                "id": 1462624041,
+                "name": "春庭雪",
+                "url": "http://aqqmusic.tc.qq.com/amobile.music.tc.qq.com/C4000036hiOc1PzcKd.m4a?guid=3457782796&vkey=71BD26F69E0799441521FAC4D5F84F1921C7D99A933D5896AD375961A45F418079A16238C88FC1ECC710F86A0F35D7E832346EED426C27BB&uin=0&fromtag=38"
+            },
+            {
+                "albumId": 75612550,
+                "albumTitle": "20岁30岁40岁",
+                "artistsName": "曾婕Joey.Z",
+                "cover": "https://p2.music.126.net/-HrOFDdHaCg-_bl6MlqFQw==/109951163753269739.jpg?param=120y120",
+                "id": 1335968312,
+                "name": "20岁30岁40岁",
+                "url": "https://music.163.com/song/media/outer/url?id=1335968312.mp3"
+            },
+            {
+                "albumId": 85511857,
+                "albumTitle": "谪仙",
+                "artistsName": "伊格赛听/叶里",
+                "cover": "https://p1.music.126.net/X-ZQ6wkyaL9cJTiyxmDhuw==/109951164680974796.jpg",
+                "id": 1421256202,
+                "name": "谪仙",
+                "url": "https://music.163.com/song/media/outer/url?id=1421256202.mp3"
+            },
+            {
+                "albumId": 35172219,
+                "albumTitle": "君の名は - 黄昏之时",
+                "artistsName": "Frank_Jiang",
+                "cover": "https://p1.music.126.net/YppJiMHyrLc7tDkj6jUttg==/109951162858188597.jpg",
+                "id": 459116892,
+                "name": "黄昏之时（FRANKOWO Bootleg）",
+                "url": "https://music.163.com/song/media/outer/url?id=459116892.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "等什么君翻唱合集",
+                "artistsName": "等什么君",
+                "cover": "https://p1.music.126.net/dDF57j70YTq6isZTIqQNWg==/109951164678301220.jpg",
+                "id": 1421028283,
+                "name": "冬眠（翻自 司南） ",
+                "url": "https://music.163.com/song/media/outer/url?id=1421028283.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "安河桥北",
+                "artistsName": "橙大蕾蕾",
+                "cover": "https://p1.music.126.net/vsZdtsTsypKNQ4aPGvpCSA==/109951162818399451.jpg?param=120y120",
+                "id": 445154044,
+                "name": "安和桥",
+                "url": "https://music.163.com/song/media/outer/url?id=445154044.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "夏至未至",
+                "artistsName": "岑宁儿",
+                "cover": "https://p1.music.126.net/ZZAQGWl9mR7g5xCyWWH3Pw==/19149094509535913.jpg?param=120y120",
+                "id": 483671599,
+                "name": "追光者",
+                "url": "https://music.163.com/song/media/outer/url?id=483671599.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "冬眠",
+                "artistsName": "司南",
+                "cover": "https://p1.music.126.net/4KDBaQXnQywQovmqvjx-8Q==/109951164444131697.jpg?param=400y400",
+                "id": 1398663411,
+                "name": "冬眠",
+                "url": "https://music.163.com/song/media/outer/url?id=1398663411.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "认了吧",
+                "artistsName": "陈奕迅",
+                "cover": "https://p1.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg?param=400y400",
+                "id": 65538,
+                "name": "好久不见",
+                "url": "https://music.163.com/song/media/outer/url?id=65538.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "苏东坡",
+                "artistsName": "司南",
+                "cover": "https://p2.music.126.net/4xgUVosD5hCOe1QETKACJQ==/109951164385891327.jpg?param=400y400",
+                "id": 1393189946,
+                "name": "苏东坡",
+                "url": "https://music.163.com/song/media/outer/url?id=1393189946.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "Dancin",
+                "artistsName": "Aaron Smith/Luvli/Krono",
+                "cover": "https://p1.music.126.net/0VY_IeJo5ACPDhTWilamuw==/18610333812708197.jpg?param=400y400",
+                "id": 439121233,
+                "name": "Dancin (Krono Remix)",
+                "url": "https://music.163.com/song/media/outer/url?id=439121233.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "Lucky 7",
+                "artistsName": "水瀬ましろ",
+                "cover": "https://p1.music.126.net/mU6lfgjfW2uA-HG61xYQFQ==/1386484172323998.jpg?param=400y400",
+                "id": 413077822,
+                "name": "砂のこども",
+                "url": "https://music.163.com/song/media/outer/url?id=413077822.mp3"
+            },
+            {
+                "albumId": 85474719,
+                "albumTitle": "没有发生的爱情",
+                "artistsName": "任然",
+                "cover": "https://p1.music.126.net/mIUtHBPTJ52H78_FhHzcWg==/19188676928210304.jpg?param=400y400",
+                "id": 493735012,
+                "name": "无人之岛",
+                "url": "https://music.163.com/song/media/outer/url?id=493735012.mp3"
+            },
+            {
+                "albumId": 93162249,
+                "albumTitle": "STRAY SHEEP",
+                "artistsName": "米津玄師",
+                "cover": "https://p1.music.126.net/6mhlWCOOQkT0xDjjuCLW7g==/109951165181187586.jpg",
+                "id": 1466598056,
+                "name": "Lemon",
+                "url": "https://music.163.com/song/media/outer/url?id=1466598056.mp3"
+            }
+        ]
+    }
+}

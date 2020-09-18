@@ -330,7 +330,7 @@
       v-model="drawer"
     >
       <div class="list-container">
-        <div class="songInfo" v-for="(item, index) in songList" :key="index">
+        <div class="songInfo" v-for="(item, index) in songList" :key="index" @click="PlayListMusic(index)">
           <img :src="item.cover" alt="" />
           <div class="info">
             <div class="name">{{ item.name }}</div>
@@ -351,86 +351,7 @@ export default {
       drawer: false,
       playIndex: 0,
       songInfo: {},
-      songList: [
-        {
-          albumId: 75612550,
-          albumTitle: "辞.九门回忆",
-          artistsName: "解忧草/冰幽",
-          cover:
-            "https://p1.music.126.net/pWJXXU4kbhsk1HhXCPUMag==/109951163879149420.jpg",
-          id: 557640761,
-          index: 0,
-          name: "辞.九门回忆",
-          url: "https://music.163.com/song/media/outer/url?id=1347524822.mp3",
-        },
-        {
-          albumId: 9333,
-          albumTitle: "翻唱合集",
-          artistsName: "等什么君",
-          cover:
-            "https://y.gtimg.cn/music/photo_new/T002R300x300M000000vtKmF3OEIbF.jpg?max_age=2592000",
-          id: 1462624041,
-          index: 1,
-          name: "春庭雪",
-          url:
-            "http://aqqmusic.tc.qq.com/amobile.music.tc.qq.com/C4000036hiOc1PzcKd.m4a?guid=3457782796&vkey=71BD26F69E0799441521FAC4D5F84F1921C7D99A933D5896AD375961A45F418079A16238C88FC1ECC710F86A0F35D7E832346EED426C27BB&uin=0&fromtag=38",
-        },
-        {
-          albumId: 75612550,
-          albumTitle: "20岁30岁40岁",
-          artistsName: "曾婕Joey.Z",
-          cover:
-            "https://p2.music.126.net/-HrOFDdHaCg-_bl6MlqFQw==/109951163753269739.jpg?param=120y120",
-          id: 1335968312,
-          index: 3,
-          name: "20岁30岁40岁",
-          url: "https://music.163.com/song/media/outer/url?id=1335968312.mp3",
-        },
-        {
-          albumId: 85511857,
-          albumTitle: "谪仙",
-          artistsName: "伊格赛听/叶里",
-          cover:
-            "https://p1.music.126.net/X-ZQ6wkyaL9cJTiyxmDhuw==/109951164680974796.jpg",
-          id: 1421256202,
-          index: 4,
-          name: "谪仙",
-          url: "https://music.163.com/song/media/outer/url?id=1421256202.mp3",
-        },
-        {
-          albumId: 35172219,
-          albumTitle: "君の名は - 黄昏之时",
-          artistsName: "Frank_Jiang",
-          cover:
-            "https://p1.music.126.net/YppJiMHyrLc7tDkj6jUttg==/109951162858188597.jpg",
-          id: 459116892,
-          index: 5,
-          name: "黄昏之时（FRANKOWO Bootleg）",
-          url: "https://music.163.com/song/media/outer/url?id=459116892.mp3",
-        },
-        {
-          albumId: 85474719,
-          albumTitle: "等什么君翻唱合集",
-          artistsName: "等什么君",
-          cover:
-            "https://p1.music.126.net/dDF57j70YTq6isZTIqQNWg==/109951164678301220.jpg",
-          id: 1421028283,
-          index: 6,
-          name: "冬眠（翻自 司南） ",
-          url: "https://music.163.com/song/media/outer/url?id=1421028283.mp3",
-        },
-        {
-          albumId: 93162249,
-          albumTitle: "STRAY SHEEP",
-          artistsName: "米津玄師",
-          cover:
-            "https://p1.music.126.net/6mhlWCOOQkT0xDjjuCLW7g==/109951165181187586.jpg",
-          id: 1466598056,
-          index: 7,
-          name: "Lemon",
-          url: "https://music.163.com/song/media/outer/url?id=1466598056.mp3",
-        },
-      ],
+      songList: [],
       volume: 80, // 音量
       lyricInfo: [],
       playType: 1, // 播放类型：1-列表循环，2-随机播放，3-单曲循环
@@ -462,6 +383,16 @@ export default {
   },
   methods: {
     Init() {
+      this.GetSongList();
+    },
+    GetSongList() {
+      axios.get('/api/songList.json')
+          .then(this.GetSongListInfo)
+    },
+    GetSongListInfo(res) {
+      console.log(res)
+      let myList = res.data.data.songList
+      this.songList = myList
       this.songInfo = this.songList[0];
       this.audioInit();
       this.GetLyric(this.songInfo.id);
@@ -535,6 +466,18 @@ export default {
         audio.play();
       }
     },
+    PlayListMusic(index) {
+      this.playIndex = index
+      this.songInfo = this.songList[this.playIndex];
+      this.GetLyric(this.songInfo.id);
+      this.playing = true;
+      this.drawer = false;
+      setTimeout(() => {
+        this.$refs.rotate.style.animationPlayState = "running";
+        // eslint-disable-next-line no-undef
+        audio.play();
+      }, 100);
+    },
     //点击进度条
     handleProgressClick(event) {
       let progressL = this.$refs.track.offsetWidth; // 进度条总长
@@ -571,9 +514,7 @@ export default {
           }
           break;
       }
-
       this.songInfo = this.songList[this.playIndex];
-      this.lyricsObjArr = [];
       this.GetLyric(this.songInfo.id);
       this.playing = true;
       setTimeout(() => {
