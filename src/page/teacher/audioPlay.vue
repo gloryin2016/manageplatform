@@ -249,7 +249,7 @@
             class="play-point"
             :style="{ transform: 'translateX(' + thumbTranslateX + 'px)' }"
           >
-            <img src="@assets/icon_01.png" alt="" />
+            <img src="@assets/dot_01.png" alt="" />
           </div>
         </div>
       </div>
