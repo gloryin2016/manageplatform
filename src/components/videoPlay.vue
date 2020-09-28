@@ -246,6 +246,7 @@ export default {
       });
     },
     //url地址变化后重新加载视频
+    // eslint-disable-next-line no-unused-vars
     PlayNew(val) {
       this.isPaused = false;
       // eslint-disable-next-line no-undef

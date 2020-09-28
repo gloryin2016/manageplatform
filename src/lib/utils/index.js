@@ -78,12 +78,12 @@ const GetVideoCover = ({
   time,
   success
 }) => {
-  // const video1 = document.createElement("video");
-  var video1 = document.getElementById("video");
-  // video1.src = url;
-  // video1.style.cssText = "position:fixed; top:0; left:-100%; visibility:hidden";
+  const video1 = document.createElement("video");
+  video1.src = url;
+  video1.style.cssText = "position:fixed; top:0; left:-100%; visibility:hidden";
   video1.onloadeddata = function () {
     let currentTime = time; //截图时间点
+    let duration = video1.duration
     video1.addEventListener("timeupdate", function () {
       clipAndCompressCover({
         media: video1,
@@ -97,7 +97,7 @@ const GetVideoCover = ({
         }
       });
     });
-    video1.currentTime = currentTime < 0 ? 1 : currentTime;
+    video1.currentTime = currentTime * duration;
   };
   // edge浏览器必须要追加到dom中，才能顺利执行相关事件。
   document.body.appendChild(video1);

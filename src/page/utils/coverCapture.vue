@@ -50,20 +50,16 @@
         </div>
       </Upload>
     </div>
-    <Button @click="cutVideoCover(0)">裁剪</Button>
     <div class="myCover">
       <div class="pic" v-for="(item, index) in showCoverArr" :key="index">
         <img :src="item" />
       </div>
     </div>
-    <video id="video" src=""></video>
-    <canvas style="display:none;" id="canvasCamera"></canvas>
   </div>
 </template>
 <script>
 // import schoolApi from '@/lib/api/school'
 import utilsTool from "@/lib/utils/index";
-import { setTimeout } from 'timers';
 export default {
   name: "",
   data() {
@@ -72,23 +68,14 @@ export default {
         url: "",
         play: false,
       },
-      cutTime: ["10", "18"],
+      cutTime: [0.05, 0.13,0.26],
       showCoverArr: [],
-      //手动剪裁绘制
-      videoWidth: 750,
-      videoHeight: 420,
-      imgSrc: "", //裁剪后的base64编码，确定之后需要再调用方法上传到七牛
-      Canvas: null,
-      thisContext: null,
-      thisVideo: null,
     };
   },
   created() {
-    document.title = "教师管理";
+    document.title = "视频封面裁剪";
   },
   mounted() {
-    // eslint-disable-next-line no-unused-vars
-    const video = document.getElementById("video");
   },
 
   methods: {
@@ -106,27 +93,39 @@ export default {
       let url = URL.createObjectURL(file);
       this.videoInfo.src = url;
       console.log(url);
-      // eslint-disable-next-line no-undef
-      video.src = url;
-      // eslint-disable-next-line no-undef
-      video.play();
+      this.cutVideoCover(url, 0);
     },
-    // eslint-disable-next-line no-unused-vars
     // 视频封面截图（传入截屏时间点）
-    cutVideoCover(index) {
-      let that = this;
-      // eslint-disable-next-line no-undef
-      video.onloadeddata = function() {
-        console.log("准备就绪");
-      };
-      let currentTime = that.cutTime[index]; //截图时间点
-      console.log("currentTime", currentTime);
-      // eslint-disable-next-line no-undef
-      video.currentTime = currentTime;
-      setTimeout(()=>{
-        this.GetPic(index);
-      },100)
+    cutVideoCover(url, index) {
+      utilsTool.GetVideoCover({
+        url: url,
+        time: this.cutTime[index],
+        success: (res) => {
+          this.showCoverArr.push(res.base64); //给展示列表传入截图的URL
+          console.log(
+            "第",index+1,"张",
+            "总",this.cutTime.length,"张"
+          );
+          if(parseInt(index+1)<parseInt(this.cutTime.length)){
+            this.cutVideoCover(url, index+=1);
+          }else {
+            console.log(this.showCoverArr)
+          }
+        },
+      });
     },
+      // let that = this;
+      // // eslint-disable-next-line no-undef
+      // video.onloadeddata = function() {
+      //   console.log("准备就绪");
+      // };
+      // let currentTime = that.cutTime[index]; //截图时间点
+      // console.log("currentTime", currentTime);
+      // // eslint-disable-next-line no-undef
+      // video.currentTime = currentTime;
+      // setTimeout(()=>{
+      //   this.GetPic(index);
+      // },1000)
     GetPic(index) {
       let that = this
       utilsTool.clipAndCompressCover({
