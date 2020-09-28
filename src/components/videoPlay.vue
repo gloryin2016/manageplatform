@@ -248,9 +248,11 @@ export default {
     //url地址变化后重新加载视频
     PlayNew(val) {
       this.isPaused = false;
+      // eslint-disable-next-line no-undef
       video.src = this.videoSrc;
       setTimeout(() => {
         this.totalTime = "00:00";
+        // eslint-disable-next-line no-undef
         video.play();
       }, 100);
     },

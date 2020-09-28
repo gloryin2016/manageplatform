@@ -134,6 +134,7 @@
       </div>
     </div>
     <Button @click="MoreNum">点击</Button>
+    <Button @click="shareToQq">分享</Button>
   </div>
 </template>
 <script>
@@ -147,20 +148,25 @@ export default {
       videoUrl,
       srtInfoList: [],
       srtTime: "",
-      prosecutorArr: ['0'],
+      prosecutorArr: ["0"],
+      shareObj: {
+        title: '测试',
+        url: 'www.baidu.com',
+        pic: 'http://aladdin-vray.oss-cn-beijing.aliyuncs.com/Other/80de988c-ad11-449b-af48-b5341c957668.jpg'
+      },
       //这里的数字数组是个8位数，只是占位，不能直接使用，看需求有可能是10位或11、12、20等等
       numbers: 2098,
       //这个参数是后台传给我们的，也不能直接使用，需要转换
     };
   },
   created() {
-    let testArr = JSON.stringify(this.numbers)
-    console.log(testArr)
-    this.prosecutorArr = testArr.split("")
-    console.log(this.prosecutorArr)
+    let testArr = JSON.stringify(this.numbers);
+    console.log(testArr);
+    this.prosecutorArr = testArr.split("");
+    console.log(this.prosecutorArr);
   },
   mounted() {
-    this.plusNPrAll()
+    this.plusNPrAll();
     var myVid = document.getElementById("video");
     // eslint-disable-next-line no-unused-vars
     let that = this;
@@ -232,9 +238,33 @@ export default {
       this.plusNPrAll();
     },
     MoreNum() {
-      this.numbers +=18
+      this.numbers += 18;
       this.plusNPrAll();
-    }
+    },
+    //分享到qq空间
+    shareToQq() {
+      let data = this.shareObj
+      var shareqqzonestring =
+        "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary=" +
+        data.title +
+        "&url=" +
+        data.url +
+        "&pics=" +
+        data.pic;
+      window.open(
+        shareqqzonestring,
+        "newwindow",
+        "height=400,width=400,top=100,left=100"
+      );
+    },
+    subinfo() {
+      // eslint-disable-next-line no-undef
+      shareToQq(
+        "测试标题",
+        "www.baidu.com",
+        "http://aladdin-vray.oss-cn-beijing.aliyuncs.com/Other/80de988c-ad11-449b-af48-b5341c957668.jpg"
+      );
+    },
   },
 };
 </script>

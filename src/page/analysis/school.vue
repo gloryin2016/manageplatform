@@ -19,11 +19,18 @@ export default {
   name: "",
   data() {
     return {
-      value: ""
+      value: "",
     };
   },
   created() {
     document.title = "学校管理";
+    var o = {
+    user:"追梦子",
+    fn:function(){
+        console.log(this.user);  //追梦子
+    }
+}
+o.fn();
   },
   mounted() {
   },
