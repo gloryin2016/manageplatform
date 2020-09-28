@@ -61,12 +61,14 @@
       img {
         width: 40px;
         height: 40px;
+        cursor: pointer;
       }
       .status {
         width: 40px;
         height: 40px;
         margin-left: 36px;
         margin-right: 36px;
+        cursor: pointer;
       }
     }
     .progress-bar {
