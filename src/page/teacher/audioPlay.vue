@@ -117,6 +117,10 @@
       a {
         color: #333;
       }
+      .demo-Circle-inner {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
   .song-cover-lyric {
@@ -300,7 +304,13 @@
           </DropdownMenu>
         </Dropdown>
         <div class="text-div">播放列表</div>
-        <a href="javascript:;"> <Icon @click="drawer = true" size="36" type="ios-list"/></a>
+        <a href="javascript:;">
+          <Icon @click="drawer = true" size="36" type="ios-list"
+        /></a>
+        <div class="text-div"></div>
+        <Circle :percent="80">
+          <span class="demo-Circle-inner" style="font-size:24px">80%</span>
+        </Circle>
       </div>
     </div>
     <div class="song-cover-lyric">
@@ -332,7 +342,12 @@
       v-model="drawer"
     >
       <div class="list-container">
-        <div class="songInfo" v-for="(item, index) in songList" :key="index" @click="PlayListMusic(index)">
+        <div
+          class="songInfo"
+          v-for="(item, index) in songList"
+          :key="index"
+          @click="PlayListMusic(index)"
+        >
           <img :src="item.cover" alt="" />
           <div class="info">
             <div class="name">{{ item.name }}</div>
@@ -388,13 +403,12 @@ export default {
       this.GetSongList();
     },
     GetSongList() {
-      axios.get('/api/songList.json')
-          .then(this.GetSongListInfo)
+      axios.get("/api/songList.json").then(this.GetSongListInfo);
     },
     GetSongListInfo(res) {
-      console.log(res)
-      let myList = res.data.data.songList
-      this.songList = myList
+      console.log(res);
+      let myList = res.data.data.songList;
+      this.songList = myList;
       this.songInfo = this.songList[0];
       this.audioInit();
       this.GetLyric(this.songInfo.id);
@@ -469,7 +483,7 @@ export default {
       }
     },
     PlayListMusic(index) {
-      this.playIndex = index
+      this.playIndex = index;
       this.songInfo = this.songList[this.playIndex];
       this.GetLyric(this.songInfo.id);
       this.playing = true;

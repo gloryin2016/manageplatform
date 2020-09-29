@@ -116,7 +116,6 @@ export default {
         },
     },
     methods: {},
-    watch: {},
 };
 </script>
 <style lang="less" scoped>
