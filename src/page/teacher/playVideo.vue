@@ -112,7 +112,7 @@
   <div class="student-data">
     <div class="video-content">
       <div class="video-part">
-        <video id="video" :src="videoUrl" controls></video>
+        <video id="video" :src="videoUrl" autoplay controls></video>
         <div class="srt-info" v-for="(item, index) in srtInfoList" :key="index">
           <div
             class="text"
@@ -146,6 +146,7 @@ export default {
     return {
       isplay: false,
       videoUrl,
+      testVideoSrc: 'http://cdn2.qupeiyin.cn/1602298610/imageToVideo237811.mp4',
       srtInfoList: [],
       srtTime: "",
       prosecutorArr: ["0"],

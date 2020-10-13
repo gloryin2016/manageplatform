@@ -28,7 +28,6 @@ export default {
   },
   created() {},
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     Mvideo,
   },
   mounted() {},

@@ -113,7 +113,7 @@
     </div>
     <div class="aside">
       <Menu
-        theme="primary"
+        theme="dark"
         ref="menus"
         :active-name="selectedMenu"
         :open-names="openMenu"
@@ -159,11 +159,13 @@
 <script>
 import logo from "@assets/avatar_02.jpg";
 import userImg from "@assets/figure.png";
+const ROLE = "user";
 export default {
   data() {
     return {
       logo,
       name: "测试名字",
+      ROLE,
       // userImg: '../assets/figure.png',
       userImg,
       menus: [
@@ -219,7 +221,7 @@ export default {
             },
             {
               name: "videoPlay",
-              title: "视频组件",
+              title: "视频播放器组件",
               icon: "",
               id: "2",
               path: "/home/teacher/videoPlay",
@@ -230,7 +232,7 @@ export default {
               icon: "",
               id: "3",
               path: "/home/teacher/audioPlay",
-            }
+            },
           ],
         },
         {
@@ -285,22 +287,49 @@ export default {
           hasDivided: true,
         },
       ],
+      routerInfo: {},
     };
   },
   created() {},
   mounted() {
-    this.selectedMenu = this.$route.path;
-    console.log(this.selectedMenu);
+    this.routerInfo = this.$route;
+    console.log(this.openMenu);
+    this.setMenu();
+    console.log(this.$route);
+  },
+  watch: {
+    $route: {
+      // eslint-disable-next-line no-unused-vars
+      handler(newRouter) {
+        // this.$refs.menus.currentActiveName = newRouter.name;
+        // console.log(newRouter)
+        // this.selectedMenu = newRouter.name
+      },
+      // immediate: true,
+    },
   },
   methods: {
     UpdateOpened(name) {
-      console.log(name)
+      console.log(name);
       this.openMenu = name;
     },
     UpdateActiveName(name) {
       this.$nextTick(() => {
         this.selectedMenu = name;
       });
+    },
+    searchRouterInfo(val) {
+      console.log("router", val);
+    },
+    setMenu() {
+      this.$forceUpdate();
+      this.openMenu = []
+      this.selectedMenu = this.$route.name;
+      let index = parseInt(this.$route.meta.menus[0]);
+      this.openMenu.push(this.menus[index].name);
+      this.UpdateOpened(this.openMenu)
+      console.log(index, this.openMenu);
+      console.log("激活菜单", this.selectedMenu);
     },
   },
 };

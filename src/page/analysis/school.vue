@@ -10,7 +10,7 @@
 </style>
 <template>
   <div class="student-data">
-     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+    <mavon-editor ref="md" @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
   </div>
 </template>
 <script>
@@ -25,21 +25,32 @@ export default {
   created() {
     document.title = "学校管理";
     var o = {
-    user:"追梦子",
-    fn:function(){
-        console.log(this.user);  //追梦子
-    }
-}
-o.fn();
+      user: "追梦子",
+      fn: function() {
+        // console.log(this.user);  //追梦子
+      },
+    };
+    o.fn();
   },
-  mounted() {
-  },
+  mounted() {},
+  // beforeRouteLeave(to, from, next) {
+  //   const role = "user";
+  //   let roles = to.meta.roles.join('');
+  //   console.log(roles,roles.includes(role))
+  //   if (roles.includes(role) === true) {
+  //     next(); //放行
+  //   } else {
+  //     next({
+  //       path: "/404",
+  //     }); //跳到404页面
+  //   }
+  // },
   methods: {
-    $imgAdd(pos, $file){
-      console.log(pos,$file)
+    $imgAdd(pos, $file) {
+      console.log(pos, $file);
     },
-    $imgDel(pos, $file){
-      console.log(pos,$file)
+    $imgDel(pos, $file) {
+      console.log(pos, $file);
     },
   },
 };
