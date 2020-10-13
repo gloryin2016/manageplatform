@@ -174,6 +174,7 @@
 </template>
 <script>
 import videoUrl from "@assets/20200916.mp4";
+import commonJs from '@lib/tools/common'
 export default {
   name: "MyVideo",
   props: {
@@ -225,13 +226,13 @@ export default {
       // eslint-disable-next-line no-undef
       video.addEventListener("canplay", () => {
         // eslint-disable-next-line no-undef
-        that.videoDuration = that.timeToString(video.duration);
+        that.videoDuration = commonJs.timeToString(video.duration);
       });
       // eslint-disable-next-line no-undef
       video.addEventListener("timeupdate", () => {
         // 当前播放时间
         // eslint-disable-next-line no-undef
-        that.currentTime = that.timeToString(video.currentTime);
+        that.currentTime = commonJs.timeToString(video.currentTime);
         // eslint-disable-next-line no-undef
         that.videoProgress = video.currentTime / video.duration;
         that.thumbTranslateX = (that.videoProgress * progressL).toFixed(3);
@@ -279,25 +280,6 @@ export default {
       this.isPaused = true;
       // eslint-disable-next-line no-undef
       video.pause();
-    },
-    // 秒值转字符串
-    timeToString(param) {
-      param = parseInt(param);
-      // eslint-disable-next-line no-unused-vars
-      let hh = "",
-        mm = "",
-        ss = "";
-      if (param >= 0 && param < 60) {
-        param < 10 ? (ss = "0" + param) : (ss = param);
-        return "00:" + ss;
-      } else if (param >= 60 && param < 3600) {
-        mm = parseInt(param / 60);
-        mm < 10 ? (mm = "0" + mm) : mm;
-        param - parseInt(mm * 60) < 10
-          ? (ss = "0" + String(param - parseInt(mm * 60)))
-          : (ss = param - parseInt(mm * 60));
-        return mm + ":" + ss;
-      }
     },
     //隐藏显示控制条
     handleMouseEnter() {

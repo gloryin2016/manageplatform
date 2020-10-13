@@ -211,6 +211,7 @@ export default {
     },
     //将时间转化为秒
     ToSeconds(t) {
+      console.log("时间转换秒",t)
       var s = 0.0;
       if (t) {
         var p = t.split(":");

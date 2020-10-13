@@ -360,6 +360,7 @@
 </template>
 <script>
 import Mscroll from "@/components/lyricScroll";
+import commonJs from '@lib/tools/common'
 import axios from "axios";
 export default {
   data() {
@@ -420,7 +421,7 @@ export default {
       // eslint-disable-next-line no-undef
       audio.addEventListener("canplay", () => {
         // eslint-disable-next-line no-undef
-        that.videoDuration = that.timeToString(audio.duration);
+        that.videoDuration = commonJs.TimeToString(audio.duration);
       });
       // eslint-disable-next-line no-undef
       audio.addEventListener("timeupdate", () => {
@@ -437,7 +438,7 @@ export default {
           }
         }
         // eslint-disable-next-line no-undef
-        that.currentTime = that.timeToString(audio.currentTime);
+        that.currentTime = commonJs.TimeToString(audio.currentTime);
         // eslint-disable-next-line no-undef
         that.audioProgress = audio.currentTime / audio.duration;
         that.thumbTranslateX = (that.audioProgress * progressL).toFixed(3);
@@ -583,7 +584,7 @@ export default {
         obj.lyric =
           item.split("]")[1].trim() === "" ? "" : item.split("]")[1].trim();
         obj.time = time
-          ? this.FormatLyricTime(time[0].slice(1, time[0].length - 1))
+          ? commonJs.TimeToSeconds(time[0].slice(1, time[0].length - 1))
           : 0;
         obj.uid = Math.random()
           .toString()
@@ -601,42 +602,6 @@ export default {
         };
       });
       console.log("歌词信息", this.lyricInfo);
-    },
-    FormatLyricTime(time) {
-      // 格式化歌词的时间 转换成 sss:ms
-      const regMin = /.*:/;
-      const regSec = /:.*\./;
-      const regMs = /\./;
-
-      const min = parseInt(time.match(regMin)[0].slice(0, 2));
-      let sec = parseInt(time.match(regSec)[0].slice(1, 3));
-      const ms = time.slice(
-        time.match(regMs).index + 1,
-        time.match(regMs).index + 3
-      );
-      if (min !== 0) {
-        sec += min * 60;
-      }
-      return Number(sec + "." + ms);
-    },
-    // 秒值转字符串
-    timeToString(param) {
-      param = parseInt(param);
-      // eslint-disable-next-line no-unused-vars
-      let hh = "",
-        mm = "",
-        ss = "";
-      if (param >= 0 && param < 60) {
-        param < 10 ? (ss = "0" + param) : (ss = param);
-        return "00:" + ss;
-      } else if (param >= 60 && param < 3600) {
-        mm = parseInt(param / 60);
-        mm < 10 ? (mm = "0" + mm) : mm;
-        param - parseInt(mm * 60) < 10
-          ? (ss = "0" + String(param - parseInt(mm * 60)))
-          : (ss = param - parseInt(mm * 60));
-        return mm + ":" + ss;
-      }
     },
   },
 };
