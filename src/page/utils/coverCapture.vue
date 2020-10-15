@@ -117,11 +117,8 @@ export default {
     GetPic(index) {
       let that = this
       utilsTool.clipAndCompressCover({
-        // eslint-disable-next-line no-undef
         media: video,
-        // eslint-disable-next-line no-undef
         currentWidth: video.videoWidth,
-        // eslint-disable-next-line no-undef
         currentHeight: video.videoHeight,
         success: function(base64) {
           that.showCoverArr.push(base64);

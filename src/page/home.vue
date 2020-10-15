@@ -160,7 +160,6 @@
 <script>
 import logo from "@assets/avatar_02.jpg";
 import userImg from "@assets/figure.png";
-// eslint-disable-next-line no-unused-vars
 import Mplayer from "@/components/playerMini";
 const ROLE = "user";
 export default {
@@ -302,7 +301,6 @@ export default {
     };
   },
   watch: {
-    // eslint-disable-next-line no-unused-vars
     $route(to, from) {
       console.log(this.$route.name);
       if(this.$route.name == 'audioPlay') {

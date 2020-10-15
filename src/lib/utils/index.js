@@ -21,7 +21,6 @@ function clipAndCompressCover({
   currentHeight,
   success
 }) {
-  // eslint-disable-next-line no-unused-vars
   const that = this;
   const canvas = document.createElement("canvas");
   const area = canvas.getContext("2d");
@@ -110,7 +109,6 @@ function getMediaSize({
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 
-    // eslint-disable-next-line no-unused-vars
     xhr.onreadystatechange = _ => {
       if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {

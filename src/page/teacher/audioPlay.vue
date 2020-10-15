@@ -386,7 +386,6 @@ export default {
   },
   created() {},
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     Mscroll,
   },
   computed: {
@@ -395,7 +394,6 @@ export default {
     },
   },
   mounted() {
-    // eslint-disable-next-line no-unused-vars
     const audio = document.getElementById("audio");
     this.Init();
   },
@@ -407,7 +405,6 @@ export default {
       axios.get("/api/songList.json").then(this.GetSongListInfo);
     },
     GetSongListInfo(res) {
-      console.log(res);
       let myList = res.data.data.songList;
       this.songList = myList;
       this.songInfo = this.songList[0];
@@ -418,15 +415,11 @@ export default {
       let that = this;
       let progressL = this.$refs.track.offsetWidth; // 进度条总长
       // 音频或视频文件已经就绪可以开始，在点击播放时触发
-      // eslint-disable-next-line no-undef
       audio.addEventListener("canplay", () => {
-        // eslint-disable-next-line no-undef
         that.videoDuration = commonJs.TimeToString(audio.duration);
       });
-      // eslint-disable-next-line no-undef
       audio.addEventListener("timeupdate", () => {
         // 当前播放时间
-        // eslint-disable-next-line no-undef
         let compareTime = audio.currentTime;
         for (let i = 0; i < that.lyricInfo.length; i++) {
           if (compareTime > parseInt(that.lyricInfo[i].time)) {
@@ -437,13 +430,10 @@ export default {
             }
           }
         }
-        // eslint-disable-next-line no-undef
         that.currentTime = commonJs.TimeToString(audio.currentTime);
-        // eslint-disable-next-line no-undef
         that.audioProgress = audio.currentTime / audio.duration;
         that.thumbTranslateX = (that.audioProgress * progressL).toFixed(3);
       });
-      // eslint-disable-next-line no-undef
       audio.addEventListener("ended", () => {
         switch (parseInt(that.playType)) {
           case 1: // 列表循环
@@ -462,7 +452,6 @@ export default {
         this.GetLyric(that.songInfo.id);
         setTimeout(() => {
           this.$refs.rotate.style.animationPlayState = "running";
-          // eslint-disable-next-line no-undef
           audio.play();
         }, 100);
       });
@@ -473,13 +462,11 @@ export default {
         // 播放中,点击则为暂停
         this.playing = false;
         this.$refs.rotate.style.animationPlayState = "paused";
-        // eslint-disable-next-line no-undef
         audio.pause();
       } else {
         // 暂停中,点击则为播放
         this.playing = true;
         this.$refs.rotate.style.animationPlayState = "running";
-        // eslint-disable-next-line no-undef
         audio.play();
       }
     },
@@ -491,7 +478,6 @@ export default {
       this.drawer = false;
       setTimeout(() => {
         this.$refs.rotate.style.animationPlayState = "running";
-        // eslint-disable-next-line no-undef
         audio.play();
       }, 100);
     },
@@ -503,7 +489,6 @@ export default {
       this.setProgress(time);
     },
     setProgress(x) {
-      // eslint-disable-next-line no-undef
       audio.currentTime = audio.duration * x;
     },
     // 上一首
@@ -536,13 +521,11 @@ export default {
       this.playing = true;
       setTimeout(() => {
         this.$refs.rotate.style.animationPlayState = "running";
-        // eslint-disable-next-line no-undef
         audio.play();
       }, 100);
     },
     //调节音量
     changeVolum(c) {
-      // eslint-disable-next-line no-undef
       audio.volume = c / 100;
     },
     SetPlaySequence(val) {
@@ -558,7 +541,6 @@ export default {
     },
     GetLyric(id) {
       let that = this;
-      // eslint-disable-next-line no-undef
       axios
         .get("https://api.mtnhao.com/lyric", {
           params: {

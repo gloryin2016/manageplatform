@@ -69,7 +69,6 @@ export default {
             oDiv.style.left = left + "px";
             oDiv.style.top = top + "px";
           };
-          // eslint-disable-next-line no-unused-vars
           document.onmouseup = (e) => {
             document.onmousemove = null;
             document.onmouseup = null;
@@ -93,7 +92,6 @@ export default {
   },
   created() {},
   mounted() {
-    // eslint-disable-next-line no-undef
     audio = document.getElementById("audio");
   },
   methods: {
@@ -110,13 +108,11 @@ export default {
         // 播放中,点击则为暂停
         this.playing = false;
         // this.$refs.rotate.style.animationPlayState = "paused";
-        // eslint-disable-next-line no-undef
         audio.pause();
       } else {
         // 暂停中,点击则为播放
         this.playing = true;
         // this.$refs.rotate.style.animationPlayState = "running";
-        // eslint-disable-next-line no-undef
         audio.play();
       }
     },

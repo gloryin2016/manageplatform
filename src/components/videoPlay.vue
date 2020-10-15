@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 <style lang="less" scoped>
 .main-container {
   width: 100%;
@@ -199,7 +198,6 @@ export default {
   },
   created() {},
   mounted() {
-    // eslint-disable-next-line no-unused-vars
     const video = document.getElementById("video");
     // this.init();
     this.videoInit();
@@ -223,43 +221,32 @@ export default {
       let that = this;
       let progressL = this.$refs.track.offsetWidth; // 进度条总长
       // 音频或视频文件已经就绪可以开始，在点击播放时触发
-      // eslint-disable-next-line no-undef
       video.addEventListener("canplay", () => {
-        // eslint-disable-next-line no-undef
         that.videoDuration = commonJs.TimeToString(video.duration);
       });
-      // eslint-disable-next-line no-undef
       video.addEventListener("timeupdate", () => {
         // 当前播放时间
-        // eslint-disable-next-line no-undef
         that.currentTime = commonJs.TimeToString(video.currentTime);
-        // eslint-disable-next-line no-undef
         that.videoProgress = video.currentTime / video.duration;
         that.thumbTranslateX = (that.videoProgress * progressL).toFixed(3);
         console.log(that.thumbTranslateX, progressL);
       });
-      // eslint-disable-next-line no-undef
       video.addEventListener("ended", () => {
         setTimeout(() => {
-          // eslint-disable-next-line no-undef
           video.play();
         }, 100);
       });
     },
     //url地址变化后重新加载视频
-    // eslint-disable-next-line no-unused-vars
     PlayNew(val) {
       this.isPaused = false;
-      // eslint-disable-next-line no-undef
       video.src = this.videoSrc;
       setTimeout(() => {
         this.totalTime = "00:00";
-        // eslint-disable-next-line no-undef
         video.play();
       }, 100);
     },
     Playing() {
-      // eslint-disable-next-line no-undef
       if (video.paused) {
         this.PlayVideo();
       } else {
@@ -272,20 +259,17 @@ export default {
     //播放
     PlayVideo() {
       this.isPaused = false;
-      // eslint-disable-next-line no-undef
       video.play();
     },
     //暂停
     PauseVideo() {
       this.isPaused = true;
-      // eslint-disable-next-line no-undef
       video.pause();
     },
     //隐藏显示控制条
     handleMouseEnter() {
       this.showControlBar();
     },
-    // eslint-disable-next-line no-unused-vars
     handleMouseMove(event) {
       this.showControlBar();
       this.showCursor();
@@ -325,16 +309,13 @@ export default {
       this.setProgress(time);
     },
     setProgress(x) {
-      // eslint-disable-next-line no-undef
       video.currentTime = video.duration * x;
     },
     //拖拽进度条
-    // eslint-disable-next-line no-unused-vars
     startDragging(event) {
       this.PauseVideo();
       this.isDragging = true;
     },
-    // eslint-disable-next-line no-unused-vars
     moveDragging(event) {},
     stopDragging() {
       this.isDragging = false;

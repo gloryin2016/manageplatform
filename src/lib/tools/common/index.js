@@ -11,7 +11,6 @@ const commonJs = {}
  */
 const TimeToString = (seconds) => {
     let param = parseInt(seconds);
-    // eslint-disable-next-line no-unused-vars
     let hh = "",
         mm = "",
         ss = "";

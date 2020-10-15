@@ -170,7 +170,6 @@ export default {
   mounted() {
     this.plusNPrAll();
     var myVid = document.getElementById("video");
-    // eslint-disable-next-line no-unused-vars
     let that = this;
     myVid.addEventListener(
       "timeupdate",
@@ -261,7 +260,6 @@ export default {
       );
     },
     subinfo() {
-      // eslint-disable-next-line no-undef
       shareToQq(
         "测试标题",
         "www.baidu.com",
