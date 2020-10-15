@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ViewUI from 'view-design';
 Vue.use(Router)
+const originalPush = Router.prototype.push
+
+Router.prototype.push = function push(location) {  return originalPush.call(this, location).catch(err => err)}
 
 const routes = [{
     path: '',
@@ -27,10 +30,12 @@ const routes = [{
           name: 'school',
           component: resolve =>
             require(['@page/analysis/school.vue'], resolve),
-          meta: {
-            menus: ['0']
-          },
-        }, ]
+        }, {
+          path: '/home/analysis/discoverMusic',
+          name: 'discoverMusic',
+          component: resolve =>
+            require(['@page/analysis/discoverMusic.vue'], resolve),
+        },]
       },
       {
         path: '/home/student',

@@ -113,7 +113,7 @@
     </div>
     <div class="aside">
       <Menu
-        theme="dark"
+        theme="light"
         ref="menus"
         :active-name="selectedMenu"
         :open-names="openMenu"
@@ -183,6 +183,13 @@ export default {
               icon: "",
               id: "0",
               path: "/home/analysis/school",
+            },
+            {
+              name: "discoverMusic",
+              title: "发现",
+              icon: "",
+              id: "1",
+              path: "/home/analysis/discoverMusic",
             },
           ],
         },
@@ -302,7 +309,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(this.$route.name);
+      // console.log(this.$route.name);
       if(this.$route.name == 'audioPlay') {
         this.showPlayer = false
       }else {
@@ -313,9 +320,9 @@ export default {
   created() {},
   mounted() {
     this.routerInfo = this.$route;
-    console.log(this.openMenu);
+    // console.log(this.openMenu);
     // this.setMenu();
-    console.log(this.$route);
+    // console.log(this.$route);
   },
   components: {
     Mplayer,
@@ -337,8 +344,8 @@ export default {
       let index = parseInt(this.$route.meta.menus[0]);
       this.openMenu.push(this.menus[index].name);
       this.UpdateOpened(this.openMenu);
-      console.log(index, this.openMenu);
-      console.log("激活菜单", this.selectedMenu);
+      // console.log(index, this.openMenu);
+      // console.log("激活菜单", this.selectedMenu);
     },
   },
 };

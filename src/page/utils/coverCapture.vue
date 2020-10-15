@@ -60,6 +60,7 @@
 <script>
 // import schoolApi from '@/lib/api/school'
 import utilsTool from "@/lib/utils/index";
+import homeApi from '@/lib/api/homePage'
 export default {
   name: "",
   data() {
