@@ -18,6 +18,21 @@ function SearchSongs({
         })
 }
 
+function GetAlbumInfo({
+    id
+}) {
+    return request
+        .get('/album', {
+            params: {
+                id,
+            },
+        })
+        .then((result) => {
+            return result.data
+        })
+}
+
 export default {
     SearchSongs,
+    GetAlbumInfo
 }

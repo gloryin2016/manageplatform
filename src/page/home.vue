@@ -16,7 +16,7 @@
     background-color: #2e384a;
     box-sizing: border-box;
     padding-left: 20px;
-    z-index: 999;
+    z-index: 2;
     .organ-logo {
       position: absolute;
       left: 15px;
@@ -72,7 +72,7 @@
     top: 0;
     box-sizing: border-box;
     padding-top: 64px;
-    z-index: 648;
+    z-index: 1;
   }
   .main {
     width: 100%;
@@ -154,11 +154,14 @@
     <div class="main">
       <router-view />
     </div>
+    <mplayer v-if="showPlayer"></mplayer>
   </div>
 </template>
 <script>
 import logo from "@assets/avatar_02.jpg";
 import userImg from "@assets/figure.png";
+// eslint-disable-next-line no-unused-vars
+import Mplayer from "@/components/playerMini";
 const ROLE = "user";
 export default {
   data() {
@@ -295,7 +298,19 @@ export default {
         },
       ],
       routerInfo: {},
+      showPlayer: true,
     };
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    $route(to, from) {
+      console.log(this.$route.name);
+      if(this.$route.name == 'audioPlay') {
+        this.showPlayer = false
+      }else {
+        this.showPlayer = true
+      }
+    },
   },
   created() {},
   mounted() {
@@ -304,11 +319,9 @@ export default {
     // this.setMenu();
     console.log(this.$route);
   },
-  // watch: {
-  //   $route: {
-      
-  //   },
-  // },
+  components: {
+    Mplayer,
+  },
   methods: {
     UpdateOpened(name) {
       console.log(name);
@@ -319,16 +332,13 @@ export default {
         this.selectedMenu = name;
       });
     },
-    searchRouterInfo(val) {
-      console.log("router", val);
-    },
     setMenu() {
       this.$forceUpdate();
-      this.openMenu = []
+      this.openMenu = [];
       this.selectedMenu = this.$route.name;
       let index = parseInt(this.$route.meta.menus[0]);
       this.openMenu.push(this.menus[index].name);
-      this.UpdateOpened(this.openMenu)
+      this.UpdateOpened(this.openMenu);
       console.log(index, this.openMenu);
       console.log("激活菜单", this.selectedMenu);
     },

@@ -46,6 +46,7 @@
         size="small"
         :columns="columns1"
         :data="searchSongsList"
+        @on-row-click="checkInfo"
       ></Table>
     </div>
     <div class="page">
@@ -68,6 +69,11 @@ export default {
   data() {
     return {
       columns1: [
+        {
+          title: "",
+          width: 80,
+          key: "sort",
+        },
         {
           title: "歌曲名称",
           key: "name",
@@ -94,11 +100,11 @@ export default {
       songCount: 0,
       start: 0,
       pageSize: 30,
+      songInfo: {},
     };
   },
   created() {
     document.title = "搜索歌曲";
-    console.log(store.state.songs);
   },
   mounted() {
     this.searchSongsList = store.state.songs.songList;
@@ -143,7 +149,6 @@ export default {
             };
           });
           this.songCount = res.result.songCount;
-          console.log(this.searchSongsList,this.songCount);
           setTimeout(() => {
             this.SetSongsList();
           }, 200);
@@ -152,8 +157,27 @@ export default {
     SetSongsList() {
       this.$store.dispatch("setSongList", this.searchSongsList);
     },
+    checkInfo(row) {
+      console.log(row)
+      this.songInfo = row
+      this.GetCover(row.albumId)
+    },
+    //获取封面
+    GetCover(albumId) {
+      songsApi
+        .GetAlbumInfo({
+          id: albumId,
+        })
+        .then((res) => {
+          this.songInfo.cover = res.album.picUrl;
+          this.SetSongsInfo()
+        });
+    },
+    SetSongsInfo() {
+      this.$store.dispatch("setSongInfo", this.songInfo);
+    },
     ChangePage(index) {
-      this.start = (index - 0) * this.pageSize + 1
+      this.start = (index - 1) * this.pageSize
       this.SearchSongs()
     },
     ChangePageSize(pageSize) {
