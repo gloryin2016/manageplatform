@@ -108,6 +108,7 @@ export default {
   },
   mounted() {
     this.searchSongsList = store.state.songs.songList;
+    console.log("测试分支")
   },
 
   methods: {
