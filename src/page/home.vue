@@ -248,6 +248,13 @@ export default {
               id: "0",
               path: "/home/practicalFunctions/coverCapture",
             },
+            {
+              name: "searchSongs",
+              title: "歌曲搜索",
+              icon: "",
+              id: "1",
+              path: "/home/practicalFunctions/searchSongs",
+            },
           ],
         },
         {
@@ -294,20 +301,14 @@ export default {
   mounted() {
     this.routerInfo = this.$route;
     console.log(this.openMenu);
-    this.setMenu();
+    // this.setMenu();
     console.log(this.$route);
   },
-  watch: {
-    $route: {
-      // eslint-disable-next-line no-unused-vars
-      handler(newRouter) {
-        // this.$refs.menus.currentActiveName = newRouter.name;
-        // console.log(newRouter)
-        // this.selectedMenu = newRouter.name
-      },
-      // immediate: true,
-    },
-  },
+  // watch: {
+  //   $route: {
+      
+  //   },
+  // },
   methods: {
     UpdateOpened(name) {
       console.log(name);

@@ -114,18 +114,6 @@ export default {
         },
       });
     },
-      // let that = this;
-      // // eslint-disable-next-line no-undef
-      // video.onloadeddata = function() {
-      //   console.log("准备就绪");
-      // };
-      // let currentTime = that.cutTime[index]; //截图时间点
-      // console.log("currentTime", currentTime);
-      // // eslint-disable-next-line no-undef
-      // video.currentTime = currentTime;
-      // setTimeout(()=>{
-      //   this.GetPic(index);
-      // },1000)
     GetPic(index) {
       let that = this
       utilsTool.clipAndCompressCover({

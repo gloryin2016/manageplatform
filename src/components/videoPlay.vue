@@ -226,13 +226,13 @@ export default {
       // eslint-disable-next-line no-undef
       video.addEventListener("canplay", () => {
         // eslint-disable-next-line no-undef
-        that.videoDuration = commonJs.timeToString(video.duration);
+        that.videoDuration = commonJs.TimeToString(video.duration);
       });
       // eslint-disable-next-line no-undef
       video.addEventListener("timeupdate", () => {
         // 当前播放时间
         // eslint-disable-next-line no-undef
-        that.currentTime = commonJs.timeToString(video.currentTime);
+        that.currentTime = commonJs.TimeToString(video.currentTime);
         // eslint-disable-next-line no-undef
         that.videoProgress = video.currentTime / video.duration;
         that.thumbTranslateX = (that.videoProgress * progressL).toFixed(3);

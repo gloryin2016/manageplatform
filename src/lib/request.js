@@ -13,10 +13,10 @@ function IsTest() {
 //请求的接口地址--自定义
 const HOST =
   env === 'development'
-    ? 'http://apitest.manageplatform.com'
+    ? 'https://api.mtnhao.com/'
     : IsTest() == true
-    ? 'http://apitest.manageplatform.com'
-    : 'https://api.manageplatform.com'
+    ? 'https://api.mtnhao.com/'
+    : 'https://api.mtnhao.com/'
 
 const CancelToken = axios.CancelToken
 const source = CancelToken.source()

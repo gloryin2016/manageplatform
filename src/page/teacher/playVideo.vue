@@ -140,6 +140,7 @@
 <script>
 // import schoolApi from '@/lib/api/school'
 import axios from "axios";
+import commonJs from '@lib/tools/common'
 import videoUrl from "@assets/20200916.mp4";
 export default {
   data() {
@@ -197,8 +198,8 @@ export default {
                 index: index,
                 sort: textItem[0],
                 text: textItem[2],
-                startTime: that.ToSeconds(textItem[1].split(" --> ")[0]),
-                endTime: that.ToSeconds(textItem[1].split(" --> ")[1]),
+                startTime: commonJs.ToSeconds(textItem[1].split(" --> ")[0]),
+                endTime: commonJs.ToSeconds(textItem[1].split(" --> ")[1]),
                 timeLine: textItem[1],
               };
             });
@@ -210,17 +211,17 @@ export default {
         });
     },
     //将时间转化为秒
-    ToSeconds(t) {
-      console.log("时间转换秒",t)
-      var s = 0.0;
-      if (t) {
-        var p = t.split(":");
-        for (let i = 0; i < p.length; i++) {
-          s = s * 60 + parseFloat(p[i].replace(",", "."));
-        }
-      }
-      return s;
-    },
+    // ToSeconds(t) {
+    //   console.log("时间转换秒",t)
+    //   var s = 0.0;
+    //   if (t) {
+    //     var p = t.split(":");
+    //     for (let i = 0; i < p.length; i++) {
+    //       s = s * 60 + parseFloat(p[i].replace(",", "."));
+    //     }
+    //   }
+    //   return s;
+    // },
     PrefixInteger(num, length) {
       //给数字前面补零 比如‘59832’补成8位即位‘00059832’
       return (Array(length).join("0") + num).slice(-length);

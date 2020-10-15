@@ -10,7 +10,6 @@ const commonJs = {}
  * @param {String} seconds 秒
  */
 const TimeToString = (seconds) => {
-    console.log(seconds)
     let param = parseInt(seconds);
     // eslint-disable-next-line no-unused-vars
     let hh = "",
@@ -39,7 +38,6 @@ const TimeToString = (seconds) => {
  * @param {String} time 秒
  */
 const TimeToSeconds = (time) => {
-    console.log(time)
     // 格式化歌词的时间 转换成 sss:ms
     const regMin = /.*:/;
     const regSec = /:.*\./;
@@ -57,7 +55,43 @@ const TimeToSeconds = (time) => {
     return Number(sec + "." + ms);
 }
 
+/**
+ * @author Der
+ * @time 2020年10月14日
+ *
+ * 00:00.00转秒
+ * @name ToSeconds
+ * @example 00:00.00转秒
+ * @param {String} t 秒
+ */
+const ToSeconds = (t) => {
+    var s = 0.0;
+      if (t) {
+        var p = t.split(":");
+        for (let i = 0; i < p.length; i++) {
+          s = s * 60 + parseFloat(p[i].replace(",", "."));
+        }
+      }
+      return s;
+}
+
+/**
+ * @author Der
+ * @time 2020年10月14日
+ *
+ * 获取歌曲地址
+ * @name GetSongPlayUrl
+ * @example 获取歌曲地址
+ * @param {number} id 歌曲id
+ */
+const GetSongPlayUrl = (id) => {
+    return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
+}
+
+
 commonJs.TimeToString = TimeToString
 commonJs.TimeToSeconds = TimeToSeconds
+commonJs.ToSeconds = ToSeconds
+commonJs.GetSongPlayUrl = GetSongPlayUrl
 
 export default commonJs

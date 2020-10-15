@@ -103,6 +103,14 @@ const routes = [{
           meta: {
             menus: ['3']
           },
+        }, {
+          path: '/home/practicalFunctions/searchSongs',
+          name: 'searchSongs',
+          component: resolve =>
+            require(['@page/utils/searchSongs.vue'], resolve),
+          meta: {
+            menus: ['3']
+          },
         }, ]
       },
       {
