@@ -87,7 +87,7 @@ export default {
     //当搜索后播放列表变化，重新给songList赋值
     gePlayInfo(curval, oldval) {
       console.log(curval, oldval);
-      this.GetNewSongList(curval);
+      // this.GetNewSongList(curval);
     },
   },
   created() {},

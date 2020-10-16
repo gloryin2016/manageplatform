@@ -154,7 +154,7 @@
     <div class="main">
       <router-view />
     </div>
-    <mplayer v-if="showPlayer"></mplayer>
+    <!-- <mplayer v-if="showPlayer"></mplayer> -->
   </div>
 </template>
 <script>
@@ -325,6 +325,7 @@ export default {
     // console.log(this.$route);
   },
   components: {
+    // eslint-disable-next-line vue/no-unused-components
     Mplayer,
   },
   methods: {
@@ -344,8 +345,6 @@ export default {
       let index = parseInt(this.$route.meta.menus[0]);
       this.openMenu.push(this.menus[index].name);
       this.UpdateOpened(this.openMenu);
-      // console.log(index, this.openMenu);
-      // console.log("激活菜单", this.selectedMenu);
     },
   },
 };

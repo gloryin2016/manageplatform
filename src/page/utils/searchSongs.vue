@@ -174,7 +174,11 @@ export default {
         });
     },
     SetSongsInfo() {
+      let songList = store.state.songs.songHistory
+      songList.push(this.songInfo)
       this.$store.dispatch("setSongInfo", this.songInfo);
+      this.$store.dispatch("pushSongRecord", songList);
+      this.$router.push({ name: "audioPlay", query: { play: 1,  } });
     },
     ChangePage(index) {
       this.start = (index - 1) * this.pageSize
