@@ -405,7 +405,7 @@ export default {
       this.GetSongList();
     },
     ClickPlay() {
-      this.songList = store.state.songs.songList;
+      this.songList = store.state.songs.songHistory;
       this.songInfo = store.state.songs.songInfo;
       console.log(store.state.songs.songHistory)
       this.audioInit();

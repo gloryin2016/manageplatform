@@ -24,7 +24,7 @@ const mutations = {
     state.songList = songList
   },
   [RECORD_SET](state, pushSongRecord) {
-    localStorage.songList = JSON.stringify(pushSongRecord)
+    localStorage.songHistory = JSON.stringify(pushSongRecord)
     state.songHistory = pushSongRecord
   },
   [SONGS_INFO](state, songInfo) {

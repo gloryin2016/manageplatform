@@ -32,7 +32,7 @@ export const setSongList = ({ commit }, songList) => {
 
 //存入搜索列表
 export const pushSongRecord = ({ commit }, pushSongRecord) => {
-  commit(types.SONGS_SET,pushSongRecord)
+  commit(types.RECORD_SET,pushSongRecord)
 }
 
 //存入当前播放歌曲
