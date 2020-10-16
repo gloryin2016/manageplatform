@@ -1,3 +1,5 @@
+import Compressor from "compressorjs";
+
 const formateDate = ({
   time,
   success
@@ -149,6 +151,8 @@ function transformBase64ToBlob(base64) {
 
   return blob;
 }
+
+
 
 export default {
   formateDate,
