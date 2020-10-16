@@ -55,12 +55,23 @@
         <img :src="item" />
       </div>
     </div>
+    <div>
+      <Upload
+        style="width:200px"
+        :before-upload="UploadPic"
+        action="//jsonplaceholder.typicode.com/posts/"
+      >
+        <Button icon="ios-cloud-upload-outline">上传图片</Button>
+      </Upload>
+      <img :src="preImage" alt="" />
+    </div>
   </div>
 </template>
 <script>
 // import schoolApi from '@/lib/api/school'
+import Compressor from "compressorjs";
 import utilsTool from "@/lib/utils/index";
-import homeApi from '@/lib/api/homePage'
+import homeApi from "@/lib/api/homePage";
 export default {
   name: "",
   data() {
@@ -69,15 +80,15 @@ export default {
         url: "",
         play: false,
       },
-      cutTime: [0.05, 0.13,0.26],
+      cutTime: [0.05, 0.13, 0.26],
       showCoverArr: [],
+      preImage: "",
     };
   },
   created() {
     document.title = "视频封面裁剪";
   },
-  mounted() {
-  },
+  mounted() {},
 
   methods: {
     UploadVideo(file) {
@@ -96,6 +107,30 @@ export default {
       console.log(url);
       this.cutVideoCover(url, 0);
     },
+    UploadPic(file) {
+      console.log("file", file);
+      return new Promise((resolve, reject) => {
+        let isLt1M = file.size / 1024 / 1024 < 1;
+        if (isLt1M) {
+          console.log("图片不超过1M不压缩");
+          resolve(file); // 在请求签名成功后再返回图片file对象，这里图片不超过1M就不用压缩直接返回file
+        } else {
+          console.log("图片压缩前", file.size);
+          new Compressor(file, {
+            width: 750, // 压缩完成的宽度，高度会自适应
+            quality: 0.6, // 压缩的质量，不加上面的宽度话压缩效果很不理想，体积基本没有变化，一定要加个宽或者高度
+            success: (res) => {
+              console.log("图片压缩", res);
+              let url = URL.createObjectURL(res);
+              this.preImage = url
+            },
+            error(err) {
+              reject(err);
+            },
+          });
+        }
+      });
+    },
     // 视频封面截图（传入截屏时间点）
     cutVideoCover(url, index) {
       utilsTool.GetVideoCover({
@@ -103,20 +138,17 @@ export default {
         time: this.cutTime[index],
         success: (res) => {
           this.showCoverArr.push(res.base64); //给展示列表传入截图的URL
-          console.log(
-            "第",index+1,"张",
-            "总",this.cutTime.length,"张"
-          );
-          if(parseInt(index+1)<parseInt(this.cutTime.length)){
-            this.cutVideoCover(url, index+=1);
-          }else {
-            console.log(this.showCoverArr)
+          console.log("第", index + 1, "张", "总", this.cutTime.length, "张");
+          if (parseInt(index + 1) < parseInt(this.cutTime.length)) {
+            this.cutVideoCover(url, (index += 1));
+          } else {
+            console.log(this.showCoverArr);
           }
         },
       });
     },
     GetPic(index) {
-      let that = this
+      let that = this;
       utilsTool.clipAndCompressCover({
         media: video,
         currentWidth: video.videoWidth,
