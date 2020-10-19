@@ -407,7 +407,6 @@ export default {
     ClickPlay() {
       this.songList = store.state.songs.songHistory;
       this.songInfo = store.state.songs.songInfo;
-      console.log(store.state.songs.songHistory)
       this.audioInit();
       this.GetLyric(this.songInfo.id);
       this.$refs.rotate.style.animationPlayState = "running";
@@ -444,7 +443,6 @@ export default {
             const index = that.lyricInfo[i].index;
             if (i === parseInt(index)) {
               that.lyricIndex = i;
-              // console.log(that.lyricIndex)
             }
           }
         }
@@ -547,7 +545,6 @@ export default {
       audio.volume = c / 100;
     },
     SetPlaySequence(val) {
-      console.log(val);
       this.playType = val;
       if (val == 1) {
         this.showPlayType = "列表循环";
@@ -574,7 +571,6 @@ export default {
       let lyricsObjArr = [];
       const regNewLine = /\n/;
       const lineArr = lrc.split(regNewLine); // 每行歌词的数组
-      // console.log("歌词", lrc);
       const regTime = /\[\d{2}:\d{2}.\d{2,3}\]/;
       lineArr.forEach((item) => {
         if (item === "") return;
@@ -601,7 +597,6 @@ export default {
           ...item,
         };
       });
-      console.log("歌词信息", this.lyricInfo);
     },
   },
 };

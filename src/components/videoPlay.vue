@@ -173,14 +173,13 @@
 </template>
 <script>
 import videoUrl from "@assets/20200916.mp4";
-import commonJs from '@lib/tools/common'
+import commonJs from "@lib/tools/common";
 export default {
   name: "MyVideo",
   props: {
     videoSrc: {
       type: String,
-      default:
-        videoUrl,
+      default: videoUrl,
     },
   },
   data() {
@@ -212,7 +211,6 @@ export default {
   },
   watch: {
     getUrl(curval, oldval) {
-      console.log(`最新值${curval}--旧值${oldval}`);
       this.PlayNew(curval);
     },
   },
@@ -229,7 +227,6 @@ export default {
         that.currentTime = commonJs.TimeToString(video.currentTime);
         that.videoProgress = video.currentTime / video.duration;
         that.thumbTranslateX = (that.videoProgress * progressL).toFixed(3);
-        console.log(that.thumbTranslateX, progressL);
       });
       video.addEventListener("ended", () => {
         setTimeout(() => {
@@ -304,7 +301,6 @@ export default {
     handleProgressClick(event) {
       let progressL = this.$refs.track.offsetWidth; // 进度条总长
       let clickX = event.offsetX;
-      console.log(clickX, progressL);
       let time = (clickX / progressL).toFixed(2);
       this.setProgress(time);
     },

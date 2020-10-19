@@ -15,7 +15,7 @@ module.exports = {
     host: 'localhost',
     proxy: {
       '/api': {
-        target: 'http://localhost:8089',
+        target: 'http://localhost:8090',
         pathRewrite: {
           '^/api': '/hock'
         }

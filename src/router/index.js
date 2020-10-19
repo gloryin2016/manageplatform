@@ -47,9 +47,6 @@ const routes = [{
           name: 'student',
           component: resolve =>
             require(['@page/student/student.vue'], resolve),
-          meta: {
-            menus: ['1']
-          },
         }, ]
       },
       {
@@ -62,36 +59,24 @@ const routes = [{
             name: 'teacher',
             component: resolve =>
               require(['@page/teacher/teacher.vue'], resolve),
-            meta: {
-              menus: ['2']
-            },
           },
           {
             path: '/home/teacher/playVideo',
             name: 'playVideo',
             component: resolve =>
               require(['@page/teacher/playVideo.vue'], resolve),
-            meta: {
-              menus: ['2']
-            },
           },
           {
             path: '/home/teacher/videoPlay',
             name: 'videoPlay',
             component: resolve =>
               require(['@page/teacher/videoPlay.vue'], resolve),
-            meta: {
-              menus: ['2']
-            },
           },
           {
             path: '/home/teacher/audioPlay',
             name: 'audioPlay',
             component: resolve =>
               require(['@page/teacher/audioPlay.vue'], resolve),
-            meta: {
-              menus: ['2']
-            },
           },
         ]
       },
@@ -104,18 +89,12 @@ const routes = [{
           path: '/home/practicalFunctions/coverCapture',
           name: 'coverCapture',
           component: resolve =>
-            require(['@page/utils/coverCapture.vue'], resolve),
-          meta: {
-            menus: ['3']
-          },
+            require(['@page/search/coverCapture.vue'], resolve),
         }, {
           path: '/home/practicalFunctions/searchSongs',
           name: 'searchSongs',
           component: resolve =>
-            require(['@page/utils/searchSongs.vue'], resolve),
-          meta: {
-            menus: ['3']
-          },
+            require(['@page/search/searchSongs.vue'], resolve),
         }, ]
       },
       {
@@ -128,9 +107,6 @@ const routes = [{
           name: 'sakura',
           component: resolve =>
             require(['@page/animation/sakura.vue'], resolve),
-          meta: {
-            menus: ['4']
-          },
         }, ]
       },
     ]

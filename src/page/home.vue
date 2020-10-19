@@ -159,6 +159,7 @@
 </template>
 <script>
 import logo from "@assets/avatar_02.jpg";
+import axios from "axios";
 import userImg from "@assets/figure.png";
 import Mplayer from "@/components/playerMini";
 const ROLE = "user";
@@ -170,119 +171,7 @@ export default {
       ROLE,
       // userImg: '../assets/figure.png',
       userImg,
-      menus: [
-        {
-          name: "dataAnalysis",
-          title: "数据统计",
-          icon: "md-school",
-          id: "0",
-          submenu: [
-            {
-              name: "school",
-              title: "学校数据",
-              icon: "",
-              id: "0",
-              path: "/home/analysis/school",
-            },
-            {
-              name: "discoverMusic",
-              title: "发现",
-              icon: "",
-              id: "1",
-              path: "/home/analysis/discoverMusic",
-            },
-          ],
-        },
-        {
-          name: "dataStudent",
-          title: "学生管理",
-          icon: "ios-people",
-          id: "0",
-          submenu: [
-            {
-              name: "student",
-              title: "学生信息",
-              icon: "",
-              id: "0",
-              path: "/home/student/student",
-            },
-          ],
-        },
-        {
-          name: "dataTeacher",
-          title: "教师管理",
-          icon: "ios-contacts",
-          id: "0",
-          submenu: [
-            {
-              name: "teacher",
-              title: "教师信息",
-              icon: "",
-              id: "0",
-              path: "/home/teacher/teacher",
-            },
-            {
-              name: "playData",
-              title: "视频播放",
-              icon: "",
-              id: "1",
-              path: "/home/teacher/playVideo",
-            },
-            {
-              name: "videoPlay",
-              title: "视频播放器组件",
-              icon: "",
-              id: "2",
-              path: "/home/teacher/videoPlay",
-            },
-            {
-              name: "audioPlay",
-              title: "音频播放器",
-              icon: "",
-              id: "3",
-              path: "/home/teacher/audioPlay",
-            },
-          ],
-        },
-        {
-          name: "practicalFunctions",
-          title: "常用工具",
-          icon: "md-planet",
-          id: "0",
-          submenu: [
-            {
-              name: "coverCapture",
-              title: "视频封面截取",
-              icon: "",
-              id: "0",
-              path: "/home/practicalFunctions/coverCapture",
-            },
-            {
-              name: "searchSongs",
-              title: "歌曲搜索",
-              icon: "",
-              id: "1",
-              path: "/home/practicalFunctions/searchSongs",
-            },
-          ],
-        },
-        {
-          name: "dataAnimation",
-          title: "动画案例",
-          icon: "md-school",
-          id: "0",
-          submenu: [
-            {
-              name: "sakura",
-              title: "樱花",
-              icon: "",
-              id: "0",
-              path: "/home/animation/sakura",
-              pathQuery: "sakura",
-            },
-          ],
-        },
-      ],
+      menus: [],
       selectedMenu: "",
       openMenu: ["dataAnalysis"],
       userMenus: [
@@ -317,7 +206,9 @@ export default {
       }
     },
   },
-  created() {},
+  created() {
+    this.GetMenuList()
+  },
   mounted() {
     this.routerInfo = this.$route;
     // console.log(this.openMenu);
@@ -329,6 +220,13 @@ export default {
     Mplayer,
   },
   methods: {
+    GetMenuList() {
+      axios.get("/api/menuList.json").then(this.GetMenuListInfo);
+    },
+    GetMenuListInfo(res) {
+      let myList = res.data.data.menuList;
+      this.menus = myList
+    },
     UpdateOpened(name) {
       console.log(name);
       this.openMenu = name;

@@ -1,4 +1,5 @@
 import Compressor from "compressorjs";
+import api from "@lib/api/songs/index";
 
 const formateDate = ({
   time,
@@ -152,10 +153,29 @@ function transformBase64ToBlob(base64) {
   return blob;
 }
 
-
+/**
+ * @author Der
+ * @time 2020年10月20日
+ *
+ * 获取封面
+ * @name GetSongCover
+ * @example 
+ * @param {int} id 专辑id
+ */
+const GetSongCover = ({ id, success }) => {
+  api.GetAlbumInfo({
+    id,
+    success: response => {
+      success({
+        songCover: response.res.album.picUrl
+      });
+    }
+  });
+};
 
 export default {
   formateDate,
   clipAndCompressCover,
   GetVideoCover,
+  GetSongCover
 };

@@ -1,4 +1,5 @@
 const commonJs = {}
+import songsApi from "@/lib/api/songs";
 
 /**
  * @author Der
@@ -65,13 +66,13 @@ const TimeToSeconds = (time) => {
  */
 const ToSeconds = (t) => {
     var s = 0.0;
-      if (t) {
+    if (t) {
         var p = t.split(":");
         for (let i = 0; i < p.length; i++) {
-          s = s * 60 + parseFloat(p[i].replace(",", "."));
+            s = s * 60 + parseFloat(p[i].replace(",", "."));
         }
-      }
-      return s;
+    }
+    return s;
 }
 
 /**
@@ -87,10 +88,89 @@ const GetSongPlayUrl = (id) => {
     return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }
 
+/**
+ * @author Der
+ * @time 2020年10月19日
+ *
+ * 判断浏览器类型
+ * @name MyBrowser
+ * @example 判断浏览器类型
+ */
+const MyBrowser = () => {
+    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+    var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+    var isIE = userAgent.indexOf("compatible") > -1 &&
+        userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+    var isEdge = userAgent.indexOf("Edge") > -1; //判断是否IE的Edge浏览器
+    var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
+    var isSafari = userAgent.indexOf("Safari") > -1 &&
+        userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器
+    var isChrome = userAgent.indexOf("Chrome") > -1 &&
+        userAgent.indexOf("Safari") > -1; //判断Chrome浏览器
+
+    if (isIE) {
+        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+        reIE.test(userAgent);
+        var fIEVersion = parseFloat(RegExp["$1"]);
+        if (fIEVersion == 7) {
+            return "IE7";
+        } else if (fIEVersion == 8) {
+            return "IE8";
+        } else if (fIEVersion == 9) {
+            return "IE9";
+        } else if (fIEVersion == 10) {
+            return "IE10";
+        } else if (fIEVersion == 11) {
+            return "IE11";
+        } else {
+            return "0";
+        } //IE版本过低
+        return "IE";
+    }
+    if (isOpera) {
+        return "Opera";
+    }
+    if (isEdge) {
+        return "Edge";
+    }
+    if (isFF) {
+        return "FF";
+    }
+    if (isSafari) {
+        return "Safari";
+    }
+    if (isChrome) {
+        return "Chrome";
+    }
+
+}
+
+/**
+ * @author Der
+ * @time 2020年10月15日
+ *
+ * 获取歌曲封面
+ * @name GetCover
+ * @example 
+ * @param {id} id 歌曲id
+ */
+const GetCover = (id) => {
+    songsApi
+        .GetAlbumInfo({
+            id: id,
+        })
+        .then((res) => {
+            console.log(res)
+            return res.album.picUrl;
+        });
+}
+
 
 commonJs.TimeToString = TimeToString
 commonJs.TimeToSeconds = TimeToSeconds
 commonJs.ToSeconds = ToSeconds
 commonJs.GetSongPlayUrl = GetSongPlayUrl
+commonJs.MyBrowser = MyBrowser
+commonJs.GetCover = GetCover
 
 export default commonJs
