@@ -109,11 +109,7 @@ export default {
   },
   mounted() {
     this.searchSongsList = store.state.songs.songList;
-<<<<<<< HEAD:src/page/utils/searchSongs.vue
-    console.log("测试分支")
-=======
     console.log(commonJs.MyBrowser())
->>>>>>> master:src/page/search/searchSongs.vue
   },
 
   methods: {
