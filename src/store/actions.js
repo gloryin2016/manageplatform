@@ -21,9 +21,18 @@ export const signOut = ({ commit }) => {
   commit(types.LOGIN_OUT)
 }
 
+export const clearSongInfo = ({ commit }) => {
+  commit(types.CLEAR_SONG)
+}
+
 //存入搜索列表
 export const setSongList = ({ commit }, songList) => {
   commit(types.SONGS_SET,songList)
+}
+
+//存入搜索列表
+export const pushSongRecord = ({ commit }, pushSongRecord) => {
+  commit(types.RECORD_SET,pushSongRecord)
 }
 
 //存入当前播放歌曲

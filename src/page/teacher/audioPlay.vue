@@ -308,9 +308,7 @@
           <Icon @click="drawer = true" size="36" type="ios-list"
         /></a>
         <div class="text-div"></div>
-        <Circle :percent="80">
-          <span class="demo-Circle-inner" style="font-size:24px">80%</span>
-        </Circle>
+        <Button @click="ClearList">清除</Button>
       </div>
     </div>
     <div class="song-cover-lyric">
@@ -360,8 +358,9 @@
 </template>
 <script>
 import Mscroll from "@/components/lyricScroll";
-import commonJs from '@lib/tools/common'
+import commonJs from "@lib/tools/common";
 import axios from "axios";
+import store from "@src/store";
 export default {
   data() {
     return {
@@ -395,11 +394,30 @@ export default {
   },
   mounted() {
     const audio = document.getElementById("audio");
-    this.Init();
+    if (this.$route.query.play) {
+      this.ClickPlay();
+    } else {
+      this.Init();
+    }
   },
   methods: {
     Init() {
       this.GetSongList();
+    },
+    ClickPlay() {
+      this.songList = store.state.songs.songHistory;
+      this.songInfo = store.state.songs.songInfo;
+      console.log(store.state.songs.songHistory)
+      this.audioInit();
+      this.GetLyric(this.songInfo.id);
+      this.$refs.rotate.style.animationPlayState = "running";
+      this.playing = true;
+      setTimeout(() => {
+        audio.play();
+      }, 100);
+    },
+    ClearList() {
+      this.$store.dispatch('clearSongInfo')
     },
     GetSongList() {
       axios.get("/api/songList.json").then(this.GetSongListInfo);

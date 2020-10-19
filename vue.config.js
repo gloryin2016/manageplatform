@@ -11,7 +11,7 @@ module.exports = {
   //关闭eslint规范
   lintOnSave: false,
   devServer: {
-    port: 8089,
+    port: 8090,
     host: 'localhost',
     proxy: {
       '/api': {
