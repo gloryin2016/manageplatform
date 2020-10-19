@@ -26,6 +26,7 @@ module.exports = {
     // 参考 https://cli.vuejs.org/zh/guide/webpack.html#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C-%E9%AB%98%E7%BA%A7
     // git: https://github.com/neutrinojs/webpack-chain
     // 通用配置区域
+    //测试一下
 
     // 配置别名
     config.resolve.alias
