@@ -19,7 +19,7 @@ function SearchSongs({
 }
 
 function GetAlbumInfo({
-    id
+    id,success
 }) {
     return request
         .get('/album', {
@@ -28,7 +28,7 @@ function GetAlbumInfo({
             },
         })
         .then((result) => {
-            return result.data
+            success && success({ res: result.data });
         })
 }
 

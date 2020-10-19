@@ -140,21 +140,22 @@
 <script>
 // import schoolApi from '@/lib/api/school'
 import axios from "axios";
-import commonJs from '@lib/tools/common'
+import commonJs from "@lib/tools/common";
 import videoUrl from "@assets/20200916.mp4";
 export default {
   data() {
     return {
       isplay: false,
       videoUrl,
-      testVideoSrc: 'http://cdn2.qupeiyin.cn/1602298610/imageToVideo237811.mp4',
+      testVideoSrc: "http://cdn2.qupeiyin.cn/1602298610/imageToVideo237811.mp4",
       srtInfoList: [],
       srtTime: "",
       prosecutorArr: ["0"],
       shareObj: {
-        title: '测试',
-        url: 'www.baidu.com',
-        pic: 'http://aladdin-vray.oss-cn-beijing.aliyuncs.com/Other/80de988c-ad11-449b-af48-b5341c957668.jpg'
+        title: "测试",
+        url: "www.baidu.com",
+        pic:
+          "http://aladdin-vray.oss-cn-beijing.aliyuncs.com/Other/80de988c-ad11-449b-af48-b5341c957668.jpg",
       },
       //这里的数字数组是个8位数，只是占位，不能直接使用，看需求有可能是10位或11、12、20等等
       numbers: 2098,
@@ -245,7 +246,7 @@ export default {
     },
     //分享到qq空间
     shareToQq() {
-      let data = this.shareObj
+      let data = this.shareObj;
       var shareqqzonestring =
         "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary=" +
         data.title +

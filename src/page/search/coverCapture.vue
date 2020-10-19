@@ -71,6 +71,7 @@
 // import schoolApi from '@/lib/api/school'
 import Compressor from "compressorjs";
 import utilsTool from "@/lib/utils/index";
+import commonJs from "@lib/tools/common";
 import homeApi from "@/lib/api/homePage";
 export default {
   name: "",
@@ -88,9 +89,19 @@ export default {
   created() {
     document.title = "视频封面裁剪";
   },
-  mounted() {},
+  mounted() {
+    this.GetCoverPic(75612550)
+  },
 
   methods: {
+    GetCoverPic(id){
+      utilsTool.GetSongCover({
+        id: id,
+        success: (res) => {
+          console.log(res)
+        },
+      });
+    },
     UploadVideo(file) {
       this.showCoverArr = [];
       console.log(file);
