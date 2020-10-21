@@ -91,6 +91,7 @@ export default {
   },
   mounted() {
     this.GetCoverPic(75612550)
+    this.GetDay()
   },
 
   methods: {
@@ -101,6 +102,27 @@ export default {
           console.log(res)
         },
       });
+    },
+    GetDay() {
+      let x;
+      let d = new Date().getDay();
+      switch(d) {
+        case 0:x="周日";
+        break;
+        case 1:x="周一";
+        break;
+        case 2:x="周二";
+        break;
+        case 3:x="周三";
+        break;
+        case 4:x="周四";
+        break;
+        case 5:x="周五";
+        break;
+        case 6:x="周六";
+        break;
+      }
+      console.log(x)
     },
     UploadVideo(file) {
       this.showCoverArr = [];

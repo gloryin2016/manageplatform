@@ -109,7 +109,7 @@ export default {
   },
   mounted() {
     this.searchSongsList = store.state.songs.songList;
-    console.log(commonJs.MyBrowser())
+    console.log(commonJs.GetUserApp())
   },
 
   methods: {
