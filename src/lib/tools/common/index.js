@@ -183,6 +183,77 @@ const GetUserApp = () => {
 }
 
 /**
+ * @author Der
+ * @time 2020年10月27日
+ *
+ * 获取两个时间差
+ * @name TimeSpan
+ * @example 
+ */
+const TimeSpan = (before, after) => {
+    let dateBegin = new Date(before)
+    let dateEnd = new Date(after)
+    let dateDiff = dateEnd.getTime() - dateBegin.getTime()
+    let dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)) //计算出相差天数
+    let dayMSSpan = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
+    let hours = Math.floor(dayMSSpan / (3600 * 1000)) //计算出小时数
+    //计算相差分钟数
+    let hourMSSpan = dayMSSpan % (3600 * 1000) //计算小时数后剩余的毫秒数
+    let minutes = Math.floor(hourMSSpan / (60 * 1000)) //计算相差分钟数
+    //计算相差秒数
+    let minutesMSSpan = hourMSSpan % (60 * 1000) //计算分钟数后剩余的毫秒数
+    let seconds = Math.round(minutesMSSpan / 1000)
+    return {
+        days: dayDiff,
+        hours,
+        minutes,
+        seconds
+    }
+}
+
+/**
+ *
+ * @author qianzhaoliang
+ * @time 2019年10月15日
+ *
+ * 时间转换格式化日期
+ * @name timestampToDate
+ * @param {Number | String} time 时间字符串或时间戳
+ * @param {String} fmt 转化之后的时间格式
+ * @description 年(y)可以用 1-4 个占位符， 月(M)、日(d)、小时(h)、分(m)、秒(s) 可以用 1-2 个占位符， 毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+ * @example DateFormat(1571124804201)
+ * @return
+ * '2019-10-15 15:33:24'
+ */
+const DateFormat = function (fmt = 'yyyy-MM-dd hh:mm:ss') {
+    let o = {
+        'M+': this.getMonth() + 1, //月份
+        'd+': this.getDate(), //日
+        'h+': this.getHours(), //小写小时
+        'H+': this.getHours(), //大写小时
+        'm+': this.getMinutes(), //分
+        's+': this.getSeconds(), //秒
+        'q+': Math.floor((this.getMonth() + 3) / 3), //季度
+        S: this.getMilliseconds() //毫秒
+    }
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(
+            RegExp.$1,
+            (this.getFullYear() + '').substr(4 - RegExp.$1.length)
+        )
+    }
+    for (var k in o) {
+        if (new RegExp('(' + k + ')').test(fmt)) {
+            fmt = fmt.replace(
+                RegExp.$1,
+                RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length)
+            )
+        }
+    }
+    return fmt
+}
+
+/**
  * @author wangqi
  * @time 2019年10月24日
  * @name LoadJs
@@ -212,6 +283,8 @@ const LoadJs = (url, callback) => {
 
 
 commonJs.TimeToString = TimeToString
+commonJs.TimeSpan = TimeSpan
+commonJs.DateFormat = DateFormat
 commonJs.TimeToSeconds = TimeToSeconds
 commonJs.ToSeconds = ToSeconds
 commonJs.GetSongPlayUrl = GetSongPlayUrl
