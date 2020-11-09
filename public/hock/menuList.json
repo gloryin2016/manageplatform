@@ -89,10 +89,17 @@
                         "path": "/home/practicalFunctions/coverCapture"
                     },
                     {
+                        "name": "getCanvas",
+                        "title": "高斯模糊测试",
+                        "icon": "",
+                        "id": "1",
+                        "path": "/home/practicalFunctions/getCanvas"
+                    },
+                    {
                         "name": "searchSongs",
                         "title": "歌曲搜索",
                         "icon": "",
-                        "id": "1",
+                        "id": "2",
                         "path": "/home/practicalFunctions/searchSongs"
                     }
                 ]

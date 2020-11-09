@@ -91,6 +91,11 @@ const routes = [{
           component: resolve =>
             require(['@page/search/coverCapture.vue'], resolve),
         }, {
+          path: '/home/practicalFunctions/getCanvas',
+          name: 'getCanvas',
+          component: resolve =>
+            require(['@page/search/getCanvas.vue'], resolve),
+        },{
           path: '/home/practicalFunctions/searchSongs',
           name: 'searchSongs',
           component: resolve =>

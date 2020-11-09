@@ -16,6 +16,7 @@
     background-size: cover;
     background-position: 50%;
     filter: blur(8px);
+    // margin: -20px; 
     opacity: 0.7;
     overflow: hidden;
     box-sizing: border-box;
