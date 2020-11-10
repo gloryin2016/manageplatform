@@ -150,13 +150,13 @@
 <template>
   <div class="student-data">
     <div class="container">
-      <!-- <div class="swiper-part">
+      <div class="swiper-part">
         <Carousel autoplay v-model="value2" loop>
           <CarouselItem v-for="(item, index) in imageList" :key="index">
             <img :src="item.imageUrl" alt="" />
           </CarouselItem>
         </Carousel>
-      </div> -->
+      </div>
       <div class="recomend-title">今日推荐</div>
       <div class="card-container">
         <div class="recomend-card">
