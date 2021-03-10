@@ -84,45 +84,72 @@ export default {
       cutTime: [0.05, 0.13, 0.26],
       showCoverArr: [],
       preImage: "",
+      path: "ws://192.168.*.*:8082/socketServer",
+      socket: "",
     };
   },
   created() {
     document.title = "视频封面裁剪";
   },
   mounted() {
-    this.GetCoverPic(75612550)
-    this.GetDay()
+    this.GetCoverPic(75612550);
+    this.GetDay();
+    // this.init();
   },
 
   methods: {
-    GetCoverPic(id){
+    init() {
+      if (typeof WebSocket === "undefined") {
+        alert("抱歉，您的浏览器不支持socket。");
+      } else {
+        // 实例化socket
+        this.socket = new WebSocket(
+          // this.path + "?token=" + localStorage.getItem("Authorization")
+        );
+        console.log("创建成功")
+        // 监听socket连接
+        // this.socket.onopen = this.open;
+        // 监听socket错误信息
+        // this.socket.onerror = this.error;
+        // 监听socket消息
+        // this.socket.onmessage = this.getMessage;
+      }
+    },
+    GetCoverPic(id) {
       utilsTool.GetSongCover({
         id: id,
         success: (res) => {
-          console.log(res)
+          console.log(res);
         },
       });
     },
     GetDay() {
       let x;
       let d = new Date().getDay();
-      switch(d) {
-        case 0:x="周日";
-        break;
-        case 1:x="周一";
-        break;
-        case 2:x="周二";
-        break;
-        case 3:x="周三";
-        break;
-        case 4:x="周四";
-        break;
-        case 5:x="周五";
-        break;
-        case 6:x="周六";
-        break;
+      switch (d) {
+        case 0:
+          x = "周日";
+          break;
+        case 1:
+          x = "周一";
+          break;
+        case 2:
+          x = "周二";
+          break;
+        case 3:
+          x = "周三";
+          break;
+        case 4:
+          x = "周四";
+          break;
+        case 5:
+          x = "周五";
+          break;
+        case 6:
+          x = "周六";
+          break;
       }
-      console.log(x)
+      console.log(x);
     },
     UploadVideo(file) {
       this.showCoverArr = [];
@@ -155,7 +182,7 @@ export default {
             success: (res) => {
               console.log("图片压缩", res);
               let url = URL.createObjectURL(res);
-              this.preImage = url
+              this.preImage = url;
             },
             error(err) {
               reject(err);
@@ -208,7 +235,7 @@ export default {
       this.videoWidth = video_dom.videoWidth;
       this.videoHeight = video_dom.videoHeight;
       let that = this;
-      //canvas画图----开始绘制
+      // canvas画图----开始绘制
       that.thisContext.drawImage(
         that.thisVideo,
         0,

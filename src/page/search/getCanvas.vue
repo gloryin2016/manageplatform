@@ -34,6 +34,45 @@
     right: 0;
     z-index: 9999;
   }
+  .box {
+    position: absolute;
+    top: 200px;
+    width: 600px;
+    height: 240px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 100px auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    z-index: 999;
+    .track {
+      height: 40px;
+      // border: 4px solid rgba(0, 0, 0, 0.3);
+      color: rgb(127, 197, 35);
+      .child {
+        width: 80px;
+        height: 20px;
+        // border: 2px solid red;
+        margin-bottom: 20px;
+        transform: translateX(1000px);
+        animation: scrollTo linear 4s infinite;
+      } // 弹幕盒子的样式
+      @keyframes scrollTo {
+        to {
+          transform: translateX(-100px);
+        }
+      }
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-width: 100px;
+      border-style: solid;
+      border-color: tomato;
+    }
+  }
 }
 .bg:after {
   content: "";
@@ -49,8 +88,19 @@
 </style>
 <template>
   <div id="capture" class="bg">
-    <img class="dataURL" :src="dataUrltext" alt="" />
+    <!-- <img class="dataURL" :src="dataUrltext" alt="" /> -->
+    <div class="box">
+      <div class="track">
+        <div class="child child-1">我是弹幕</div>
+      </div>
+      <div class="track">
+        <div class="child child-1">我是弹幕</div>
+      </div>
+      <div class="triangle"></div>
+    </div>
+
     <transition
+      name="fade"
       enter-active-class="animated swing"
       leave-active-class="animated shake"
     >

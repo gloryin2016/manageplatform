@@ -567,6 +567,7 @@ export default {
           let lrc = response.data.lrc.lyric;
           that.GetLyricList(lrc);
         });
+        //
     },
     GetLyricList(lrc) {
       let lyricsObjArr = [];
@@ -599,6 +600,7 @@ export default {
         };
       });
     },
+    // 
   },
 };
 </script>
