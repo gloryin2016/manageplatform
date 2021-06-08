@@ -74,7 +74,7 @@
       font-size: 20px;
     }
     .loginButton:hover {
-      background-color: #3B65BB;
+      background-color: #3b65bb;
     }
     .call {
       margin-top: 10px;
@@ -84,6 +84,87 @@
       text-align: center;
       line-height: 48px;
       background: #fff;
+    }
+    .cyberpunk {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .banner {
+        margin: 25px auto;
+        width: 400px;
+        height: 100px;
+        border: 5px solid white;
+        box-shadow: 0 0 10px red;
+      }
+      .banner:hover {
+        box-shadow: 0 0 10px green;
+      }
+      .banner:hover::before {
+        animation: trouble-effect 2s;
+      }
+      .banner::before,
+      .banner::after {
+        content: "登录 2077";
+        color: white;
+        font: bold 2.5em "yahei";
+        position: absolute;
+        text-align: center;
+        display: block;
+        width: 400px;
+        line-height: 100px;
+        text-shadow: -5px -5px orange, 3px 3px #00ffb3;
+      }
+      .banner::before {
+        z-index: 999;
+      }
+      @keyframes trouble-effect {
+        00% {
+          clip-path: inset(35% 0% 55% 0%);
+          transform: translate(5px, 2px);
+        }
+        10% {
+          clip-path: inset(40% 0% 50% 0%);
+          transform: translate(-5px, 2px);
+        }
+        20% {
+          clip-path: inset(45% 0% 45% 0%);
+          transform: translate(5px, 2px);
+        }
+        30% {
+          clip-path: inset(50% 0% 40% 0%);
+          transform: translate(5px, 2px);
+        }
+        40% {
+          clip-path: inset(55% 0% 35% 0%);
+          transform: translate(-15px, 2px);
+        }
+        50% {
+          clip-path: inset(60% 0% 20% 0%);
+          transform: translate(5px, 2px);
+        }
+        60% {
+          clip-path: inset(65% 0% 15% 0%);
+          transform: translate(-5px, 2px);
+        }
+        70% {
+          clip-path: inset(70% 0% 20% 0%);
+          transform: translate(15px, 2px);
+        }
+        80% {
+          clip-path: inset(75% 0% 15% 0%);
+          transform: translate(-5px, 2px);
+        }
+        90% {
+          clip-path: inset(80% 0% 10% 0%);
+          transform: translate(5px, 2px);
+        }
+        100% {
+          clip-path: inset(85% 0% 5% 0%);
+          transform: translate(-15px, 2px);
+        }
+      }
     }
   }
 }
@@ -117,7 +198,10 @@
           v-model="password"
         />
       </div>
-      <div class="loginButton" @click="LoginMyPage">登录</div>
+      <!-- <div class="loginButton" @click="LoginMyPage">登录</div> -->
+      <div class="cyberpunk" @click="LoginMyPage">
+        <div class="banner"></div>
+      </div>
     </div>
   </div>
 </template>

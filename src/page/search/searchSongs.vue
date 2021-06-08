@@ -2,6 +2,7 @@
 .homePage {
   width: 100%;
   height: 100%;
+  overflow: auto;
   padding: 0;
   box-sizing: border-box;
   background: #fff;
@@ -31,7 +32,7 @@
 </style>
 <template>
   <div class="homePage">
-    <div class="search-bar">
+    <div class="search-bar" id="box1">
       <div class="searchInfo"></div>
       <Input
         v-model="keyWords"
@@ -58,6 +59,7 @@
         show-sizer
       />
     </div>
+    <Button @click="GoBack" id="ding">回顶部</Button>
   </div>
 </template>
 <script>
@@ -109,10 +111,19 @@ export default {
   },
   mounted() {
     this.searchSongsList = store.state.songs.songList;
-    console.log(commonJs.GetUserApp())
+    console.log(commonJs.GetUserApp());
+    let dom = document.getElementsByClassName('search-bar')
+    console.log('dom', dom)
+    let mon = document.getElementsByTagName('div')
+    console.log('mon', mon)
   },
 
   methods: {
+    GoBack() {
+      document.querySelector("#box1").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
     SearchSongs() {
       songsApi
         .SearchSongs({
@@ -160,9 +171,9 @@ export default {
       this.$store.dispatch("setSongList", this.searchSongsList);
     },
     checkInfo(row) {
-      console.log(row)
-      this.songInfo = row
-      this.GetCover(row.albumId)
+      console.log(row);
+      this.songInfo = row;
+      this.GetCover(row.albumId);
     },
     //获取封面
     GetCover(albumId) {
@@ -174,29 +185,29 @@ export default {
       //     this.songInfo.cover = res.album.picUrl;
       //     this.SetSongsInfo()
       //   });
-        utilsTool.GetSongCover({
+      utilsTool.GetSongCover({
         id: albumId,
         success: (res) => {
-          console.log(res)
+          console.log(res);
           this.songInfo.cover = res.songCover;
-          this.SetSongsInfo()
+          this.SetSongsInfo();
         },
       });
     },
     SetSongsInfo() {
-      let songList = store.state.songs.songHistory
-      songList.push(this.songInfo)
+      let songList = store.state.songs.songHistory;
+      songList.push(this.songInfo);
       this.$store.dispatch("setSongInfo", this.songInfo);
       this.$store.dispatch("pushSongRecord", songList);
-      this.$router.push({ name: "audioPlay", query: { play: 1,  } });
+      this.$router.push({ name: "audioPlay", query: { play: 1 } });
     },
     ChangePage(index) {
-      this.start = (index - 1) * this.pageSize
-      this.SearchSongs()
+      this.start = (index - 1) * this.pageSize;
+      this.SearchSongs();
     },
     ChangePageSize(pageSize) {
-      this.pageSize = pageSize
-      this.SearchSongs()
+      this.pageSize = pageSize;
+      this.SearchSongs();
     },
   },
 };

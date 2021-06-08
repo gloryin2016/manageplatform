@@ -1,6 +1,7 @@
 <style lang="less">
 .student {
   background: #f3f3f3;
+  position: relative;
 }
 </style>
 <template>

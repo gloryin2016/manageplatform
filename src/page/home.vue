@@ -80,6 +80,20 @@
     padding-left: 260px;
     padding-top: 64px;
     height: 100vh;
+    .fade-transform-leave-active,
+    .fade-transform-enter-active {
+      transition: all 0.5s;
+    }
+
+    .fade-transform-enter {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    .fade-transform-leave-to {
+      opacity: 0;
+      transform: translateX(30px);
+    }
   }
 }
 </style>
@@ -152,9 +166,11 @@
       </Menu>
     </div>
     <div class="main">
-      <router-view />
+      <!-- <transition name="fade-transform" mode="out-in"> -->
+        <router-view />
+      <!-- </transition> -->
     </div>
-    <!-- <mplayer v-if="showPlayer"></mplayer> -->
+    <mplayer v-if="showPlayer"></mplayer>
   </div>
 </template>
 <script>
@@ -199,15 +215,15 @@ export default {
   watch: {
     $route(to, from) {
       // console.log(this.$route.name);
-      if(this.$route.name == 'audioPlay') {
-        this.showPlayer = false
-      }else {
-        this.showPlayer = true
+      if (this.$route.name == "audioPlay") {
+        this.showPlayer = false;
+      } else {
+        this.showPlayer = true;
       }
     },
   },
   created() {
-    this.GetMenuList()
+    this.GetMenuList();
   },
   mounted() {
     this.routerInfo = this.$route;
@@ -225,7 +241,7 @@ export default {
     },
     GetMenuListInfo(res) {
       let myList = res.data.data.menuList;
-      this.menus = myList
+      this.menus = myList;
     },
     UpdateOpened(name) {
       console.log(name);

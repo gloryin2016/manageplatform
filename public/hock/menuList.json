@@ -101,6 +101,13 @@
                         "icon": "",
                         "id": "2",
                         "path": "/home/practicalFunctions/searchSongs"
+                    },
+                    {
+                        "name": "bilibili",
+                        "title": "bilibili",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/practicalFunctions/bilibili"
                     }
                 ]
             },
@@ -117,6 +124,48 @@
                         "id": "0",
                         "path": "/home/animation/sakura",
                         "pathQuery": "sakura"
+                    },
+                    {
+                        "name": "testAnimation",
+                        "title": "动画",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/animation/test"
+                    },
+                    {
+                        "name": "cardFlip",
+                        "title": "翻转动画",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/animation/card"
+                    },
+                    {
+                        "name": "pictureFliter",
+                        "title": "滤镜模糊",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/animation/fliter"
+                    },
+                    {
+                        "name": "bloodMoon",
+                        "title": "血月",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/animation/bloodMoon"
+                    },
+                    {
+                        "name": "bloodEye",
+                        "title": "写轮眼",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/animation/eye"
+                    },
+                    {
+                        "name": "apple",
+                        "title": "高斯模糊",
+                        "icon": "",
+                        "id": "0",
+                        "path": "/home/animation/apple"
                     }
                 ]
             }

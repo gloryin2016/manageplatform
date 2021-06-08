@@ -100,7 +100,12 @@ const routes = [{
           name: 'searchSongs',
           component: resolve =>
             require(['@page/search/searchSongs.vue'], resolve),
-        }, ]
+        },{
+          path: '/home/practicalFunctions/bilibili',
+          name: 'bilibili',
+          component: resolve =>
+            require(['@page/search/bilibili.vue'], resolve),
+        },]
       },
       {
         path: '/home/animation',
@@ -108,11 +113,41 @@ const routes = [{
         redirect: '/home/animation/sakura',
         component: resolve => require(['@page/analysis/index.vue'], resolve),
         children: [{
+          path: '/home/animation/apple',
+          name: 'apple',
+          component: resolve =>
+            require(['@page/animation/apple.vue'], resolve),
+        }, {
           path: '/home/animation/sakura',
           name: 'sakura',
           component: resolve =>
             require(['@page/animation/sakura.vue'], resolve),
-        }, ]
+        }, {
+          path: '/home/animation/test',
+          name: 'testAnimation',
+          component: resolve =>
+            require(['@page/animation/test.vue'], resolve),
+        },{
+          path: '/home/animation/card',
+          name: 'cardFlip',
+          component: resolve =>
+            require(['@page/animation/cardFlip.vue'], resolve),
+        },{
+          path: '/home/animation/fliter',
+          name: 'pictureFliter',
+          component: resolve =>
+            require(['@page/animation/fliter.vue'], resolve),
+        },{
+          path: '/home/animation/bloodMoon',
+          name: 'bloodMoon',
+          component: resolve =>
+            require(['@page/animation/bloodMoon.vue'], resolve),
+        },{
+          path: '/home/animation/eye',
+          name: 'bloodEye',
+          component: resolve =>
+            require(['@page/animation/eye.vue'], resolve),
+        },]
       },
     ]
   },
